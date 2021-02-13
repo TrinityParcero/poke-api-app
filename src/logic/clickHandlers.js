@@ -1,12 +1,20 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PokeList from '../components/PokemonList';
+
 const { getPokeByType } = require('./pokeLogic');
 
+/**
+ * 
+ */
 const genButtonClick = async () => {
     try {
-        const genButton = document.querySelector('#genButton');
-        const genBox = document.querySelector('#generator');
         const genText = document.querySelector('#generated');
-
         const typeInputs = document.querySelectorAll('input[name=type]');
+
+        // clear old pokemon
+        // TODO: display a gif here until result set loads
+        ReactDOM.render('', genText);
 
         const getPokesByTypePromises = [];
         for (const input of typeInputs) {
@@ -14,13 +22,19 @@ const genButtonClick = async () => {
                 getPokesByTypePromises.push(getPokeByType(input.value));
             }
         }
-        const result = await Promise.all(getPokesByTypePromises);
-        genText.innerHTML = JSON.stringify(result);
+        const resultData = (await Promise.all(getPokesByTypePromises))[0];
+
+        console.log(`Found ${resultData.length} pokemon`);
+
+        const pokeList = <PokeList values={resultData} />;
+
+        ReactDOM.render(
+            pokeList,
+            genText
+        );
     } catch (error) {
         console.log(`Something went wrong! Error: ${error.stack}`);
     }
 };
 
-module.exports = {
-    genButtonClick
-};
+export default genButtonClick;

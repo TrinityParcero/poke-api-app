@@ -20,14 +20,16 @@ const getPokeByType = async (type) => {
         throw new Error(`No pokemon in response for type ${type}`);
     }
     const pokeOfType = response.body.pokemon;
-    console.log(pokeOfType[0]);
     // get data for each of those pokemon
     const pokeDataPromises = [];
     for (const pokemon of pokeOfType) {
         pokeDataPromises.push(getPokemonData(pokemon.pokemon.name));
     }
     const fullPokemonData = await Promise.all(pokeDataPromises);
-    return fullPokemonData;
+
+    // remove special cases with no sprites - special forms, etc.
+    const filteredPokemonData = fullPokemonData.filter(pokemon => pokemon.sprite !== null);
+    return filteredPokemonData;
 };
 
 /**

@@ -2,7 +2,7 @@ import React from 'react';
 
 import CheckboxSelector from './components/CheckboxSelector';
 import { PokeData } from './pokeData';
-import { genButtonClick } from './logic/clickHandlers';
+import genButtonClick from './logic/clickHandlers';
 
 class App extends React.Component {
     render() {
@@ -15,7 +15,7 @@ class App extends React.Component {
                 <main>
                     <CheckboxSelector category="type" values={PokeData.types} />
                     <div id="generator">
-                        <p id="generated"></p>
+                        <div id="generated"></div>
                         <button id="genButton" onClick={genButtonClick}>generate</button>
                     </div>
                 </main>
