@@ -6,7 +6,7 @@ This is a simple app I started during a coding challenge while applying for jobs
 
 # Noted Bugs / Planned Improvements
 
--   add html interface instead of accessing via url query
+-   API FUNCTIONALITY DISABLED WHILE I GET THE FRONTEND HOOKED UP
 -   allow for complex selections i.e. pokemon which fit query "Type: Flying" AND "Generation: 4" AND "Ability: Simple"
 -   add a sprite viewer?
 -   add some nice css styling
