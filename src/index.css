@@ -1,14 +1,18 @@
+* {
+    color: black;
+    font-family: 'Catamaran', serif;
+}
 body {
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.main {
+main {
     max-width: 2000px;
+    width: 80%;
     margin: 0 auto;
     vertical-align: middle;
-    margin-bottom: 20%;
-    margin-top: 5%;
+    padding-bottom: 800px;
 }
 a {
     text-decoration: none;
@@ -17,30 +21,16 @@ a {
     margin: 10px;
 }
 header {
-    vertical-align: center;
+    vertical-align: left;
     margin: 0 auto;
     width: 100%;
-    margin-top: 1%;
-}
-img {
-    display: block;
-}
-img:hover {
-    opacity: 0.7;
-}
-
-label {
-    font-family: 'Catamaran', sans-serif;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 header h1 {
     color: black;
     margin: 0;
     line-height: 1em;
-}
-* {
-    color: black;
-    text-align: center;
-    font-family: 'Catamaran', serif;
 }
 h1 {
     font-size: 3em;
@@ -51,16 +41,69 @@ p {
     margin-bottom: 0;
     text-align: left;
 }
-#name {
-    font-size: 1em;
-    font-family: 'Catamaran', serif;
-    text-decoration: overline;
-    margin-top: 1px;
-    padding-top: 0;
-    color: black;
+legend {
+    font-size: 1.2em;
+    font-family: 'Catamaran', sans-serif;
+}
+#type {
+    vertical-align: middle;
+    margin: 0 auto;
+    bottom: 20px;
+    padding: 10px 20px;
+    width: 480px;
+    float: left;
+    font-size: 0.8em;
+}
+#gen {
+    font-size: 0.8em;
+    width: 140px;
+    vertical-align: middle;
+    margin: 0 auto;
+    padding: 10px 20px;
+    margin-left: 20px;
+    float: left;
+}
+#generator {
+    display: block;
+    padding: 10px;
+    background-color: black;
+    width: 300px;
+    height: 180px;
+    margin-left: 50px;
+    float: left;
+}
+#generator p {
+    padding: 10px;
     text-align: center;
 }
-
+#generated {
+    background-color: white;
+    text-decoration: none;
+    padding: 0;
+    vertical-align: middle;
+    margin: 10px auto;
+}
+button {
+    background-color: white;
+    border: 1.4px solid dimgrey;
+    padding: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.2em;
+}
+button:hover {
+    border: white;
+    background-color: lightgray;
+}
+button:active {
+    background-color: black;
+    color: white;
+    border: none;
+}
+div .pairedCheckboxAndLabel {
+    display: inline-block;
+    width: 80px;
+}
 button {
     background-color: white;
     border: 1.4px solid dimgrey;
@@ -81,7 +124,7 @@ button:active {
 footer {
     background: black;
     position: fixed;
-    top: 92%;
+    top: 96%;
     padding: 5px;
     width: 100%;
 }
