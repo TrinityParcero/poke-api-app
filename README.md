@@ -6,7 +6,7 @@ This is a simple app I started during a coding challenge while applying for jobs
 
 # Noted Bugs / Planned Improvements
 
--   API FUNCTIONALITY DISABLED WHILE I GET THE FRONTEND HOOKED UP
--   allow for complex selections i.e. pokemon which fit query "Type: Flying" AND "Generation: 4" AND "Ability: Simple"
--   add a sprite viewer?
--   add some nice css styling
+-   add a nice little loading gif for time it takes to load pokemon list
+-   change type selector to make more sense - maybe radio buttons? type 1, type 2
+-   allow for more complex selections i.e. pokemon which fit query "Type: Flying" AND "Generation: 4" AND "Ability: Simple"
+-   give it unique css styling - currently mostly just copied from extraordinary generator

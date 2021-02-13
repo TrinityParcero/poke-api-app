@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 /**
  * set of paired checkboxes+labels for <values> within a fieldset with legend <category>
@@ -13,7 +13,7 @@ class CheckboxSelector extends React.Component {
 
     render(){
         return (
-            <fieldset>
+            <fieldset id={this.category}>
                 <legend>{this.category}</legend>
                 {this.values.map(inputValue =>
                     <PairedCheckboxAndLabel id={`${this.category}_${inputValue}`} value={inputValue} category={this.category}/>
@@ -36,7 +36,7 @@ class PairedCheckboxAndLabel extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="pairedCheckboxAndLabel">
                 <input type="checkbox" id={this.id} value={this.value} name={this.category}/>
                 <label htmlFor={this.id}>{this.value}</label>
             </div>                     
