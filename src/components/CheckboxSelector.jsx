@@ -44,6 +44,12 @@ class PairedCheckboxAndLabel extends React.Component {
     }
 }
 
+PairedCheckboxAndLabel.propTypes = {
+    value: PropTypes.string,
+    category: PropTypes.string,
+    id: PropTypes.string
+};
+
 CheckboxSelector.propTypes = {
     category: PropTypes.string,
     values: PropTypes.array
