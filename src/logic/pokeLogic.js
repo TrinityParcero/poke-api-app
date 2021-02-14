@@ -25,7 +25,15 @@ const getPokeByType = async (type) => {
     for (const pokemon of pokeOfType) {
         pokeDataPromises.push(getPokemonData(pokemon.pokemon.name));
     }
-    const fullPokemonData = await Promise.all(pokeDataPromises);
+
+    const finishedPromises = await Promise.allSettled(pokeDataPromises);
+    const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
+    if (promiseErrors.length > 0) {
+        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors.`);
+    }
+    const fullPokemonData = finishedPromises.map(promise =>
+        promise.value
+    ).filter(value => value !== undefined);
 
     // remove special cases with no sprites - special forms, etc.
     const filteredPokemonData = fullPokemonData.filter(pokemon => pokemon.sprite !== null);
@@ -34,6 +42,7 @@ const getPokeByType = async (type) => {
 
 /**
  * Get Pokemon Data. returns name and front sprite of given pokemon
+ * TODO: add caching?
  * 
  * @param {string} pokemon name of pokemon to get data for
  */

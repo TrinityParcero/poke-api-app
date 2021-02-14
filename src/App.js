@@ -13,11 +13,11 @@ class App extends React.Component {
                     <p>Just a little app serving up data from the PokéAPI</p>
                 </header>
                 <main>
-                    <CheckboxSelector category="type" values={PokeData.types} />
-                    <div id="generator">
-                        <div id="generated"></div>
-                        <button id="genButton" onClick={genButtonClick}>generate</button>
+                    <div id="selectors">
+                        <CheckboxSelector category="type" values={PokeData.types} />
+                        <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     </div>
+                    <div id="carousel"></div>
                 </main>
                 <footer>
                     <p>Trinity Parcero 2021 | PokéAPI created by Paul Hallett | Pokemon® Nintendo</p>
