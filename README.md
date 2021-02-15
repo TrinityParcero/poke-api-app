@@ -10,7 +10,8 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 -   add a nice little loading gif for time it takes to load pokemon list
 -   make individual pokemon clickable to get more info on them - pokedex entries, full type info, etc.
--   change type selector to make more sense - maybe radio buttons? type 1, type 2
--   allow for more complex selections i.e. pokemon which fit query "Type: Flying" AND "Generation: 4" AND "Ability: Simple"
--   give it unique css styling - currently mostly just copied from extraordinary generator
+-   add an "about" page - link back to my main portfolio site
+-   give it unique css styling - based on pokemon handbook 1999 ideally
 -   add caching?
+-   add text search which includes prefix and fuzzy matching for pokemon names
+-   filter by color, generation, habitat
