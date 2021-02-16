@@ -15,14 +15,19 @@ class App extends React.Component {
                 <main>
                     <div id="selectors">
                         <SelectorFieldset category="type" values={PokeData.types} inputType="radio" />
+                        {/* <SelectorFieldset category="type2" values={PokeData.types} inputType="radio" /> */}
                         <button id="genButton" onClick={genButtonClick}>get pokemon</button>
+                    </div>
+                    <div id="pokedex" style={{ "background-color": "black" }}>
+                        blah blach
+                        {/* until a pokemon is selected, use this section to display tutorial messages */}
                     </div>
                     <div id="carousel"></div>
                 </main>
                 <footer>
                     <p>Trinity Parcero 2021 | PokéAPI created by Paul Hallett | Pokemon® Nintendo</p>
                 </footer>
-            </div>
+            </div >
         );
     }
 }

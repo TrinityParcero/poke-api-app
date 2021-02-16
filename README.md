@@ -15,3 +15,11 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   add caching?
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   filter by color, generation, habitat
+
+# Design Sketch / Inspiration
+
+I have a lot of fond memories of flipping through The Official Pokemon Handbook as a kid, so it was pretty easy for me when thinking about the visual design to decide that I wanted to try and imitate its (very 1999) design sensibilities for this.
+<img src="./public/pokemonHandbook.jpg" alt="Official Pokemon Handbook (1999) by Maria S. Barbo" />
+
+Here's my initial rough draft thumbnail, featuring a very good drawing of a Charmander.
+<img src="./public/pokeAppSketch.jpg" alt="Thumbnail design sketch" />
