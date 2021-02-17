@@ -14,7 +14,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   give it unique css styling - based on pokemon handbook 1999 ideally
 -   add caching?
 -   add text search which includes prefix and fuzzy matching for pokemon names
--   filter by color, generation, habitat
+-   filter by color, generation
 
 # Design Sketch / Inspiration
 
