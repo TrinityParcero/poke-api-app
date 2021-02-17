@@ -6,6 +6,7 @@ const BasePokeAPIURL = 'https://pokeapi.co/api/v2';
  * Get Pokemon by Type. makes a request to pokeAPI to get pokemon of type <type>
  * 
  * @param {string} type type of pokemon to return
+ * @returns {Array} array of all pokemon of type <type>
  */
 const getPokeByType = async (type) => {
     console.log(`Getting pokemon of type ${type}`);
@@ -23,13 +24,13 @@ const getPokeByType = async (type) => {
     // get data for each of those pokemon
     const pokeDataPromises = [];
     for (const pokemon of pokeOfType) {
-        pokeDataPromises.push(getPokemonData(pokemon.pokemon.name));
+        pokeDataPromises.push(getBasicPokemonData(pokemon.pokemon.name));
     }
 
     const finishedPromises = await Promise.allSettled(pokeDataPromises);
     const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
     if (promiseErrors.length > 0) {
-        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors.`);
+        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors. Reason: ${promiseErrors[0].reason}`);
     }
     const fullPokemonData = finishedPromises.map(promise =>
         promise.value
@@ -41,22 +42,62 @@ const getPokeByType = async (type) => {
 };
 
 /**
- * Get Pokemon Data. returns name and front sprite of given pokemon
+ * Get Basic Pokemon Data. returns name and front sprite of given pokemon
  * TODO: add caching?
  * 
  * @param {string} pokemon name of pokemon to get data for
+ * @returns {object} pokemon data
  */
-const getPokemonData = async (pokemon) => {
-    const response = JSON.parse((await request
+const getBasicPokemonData = async (pokemon) => {
+    const pokemonAPIResponse = JSON.parse((await request
         .get(`${BasePokeAPIURL}/pokemon/${pokemon}`)
         .accept('application/json')).text);
 
+    const otherSprites = pokemonAPIResponse.sprites.other;
+    let officialArt = false;
+    if (otherSprites) {
+        if (otherSprites['official-artwork']) {
+            officialArt = otherSprites['official-artwork'].front_default;
+        }
+        else {
+            console.log(`Couldn't find official art for ${pokemonAPIResponse.name} :(`);
+        }
+    }
+
     return {
-        name: response.name,
-        sprite: response.sprites.front_default
+        name: pokemonAPIResponse.name,
+        sprite: pokemonAPIResponse.sprites.front_default,
+        art: officialArt,
+        types: pokemonAPIResponse.types
+    };
+};
+
+/**
+ * Get Pokedex Data. returns data we need to construct "Pokedex" page for a given <pokemon>
+ * TODO: add caching?
+ * 
+ * @param {string} pokemon name of pokemon to get data for
+ * @returns {object} pokemon data
+ */
+const getPokedexData = async (pokemon) => {
+    const speciesAPIResponse = JSON.parse((await request
+        .get(`${BasePokeAPIURL}/pokemon-species/${pokemon}`)
+        .accept('application/json')).text);
+
+    const generationNumber = speciesAPIResponse.generation.url[speciesAPIResponse.generation.url.length - 2];
+    const genus = (speciesAPIResponse.genera.filter(genusObject => genusObject.language.name === 'en')).genus;
+
+    return {
+        number: speciesAPIResponse.order,
+        color: speciesAPIResponse.color.name,
+        evolutionChainUrl: speciesAPIResponse.evolution_chain.url,
+        generation: generationNumber,
+        dexEntry: speciesAPIResponse.flavor_text_entries[0].flavor_text,
+        genus
     };
 };
 
 module.exports = {
-    getPokeByType
+    getPokeByType,
+    getPokedexData
 };

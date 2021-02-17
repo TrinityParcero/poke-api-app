@@ -10,7 +10,19 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 -   add a nice little loading gif for time it takes to load pokemon list
 -   make individual pokemon clickable to get more info on them - pokedex entries, full type info, etc.
--   change type selector to make more sense - maybe radio buttons? type 1, type 2
--   allow for more complex selections i.e. pokemon which fit query "Type: Flying" AND "Generation: 4" AND "Ability: Simple"
--   give it unique css styling - currently mostly just copied from extraordinary generator
+-   add an "about" page - link back to my main portfolio site
+-   give it unique css styling - based on pokemon handbook 1999 ideally
 -   add caching?
+-   add text search which includes prefix and fuzzy matching for pokemon names
+-   filter by color, generation
+
+# Design Sketch / Inspiration
+
+I have a lot of fond memories of flipping through The Official Pokemon Handbook as a kid, so I pretty quickly decided that I wanted to try and imitate its (very 1999) design sensibilities for this.
+</br>
+<img src="./public/images/pokemonHandbook.jpg" alt="Official Pokemon Handbook (1999) by Maria S. Barbo" height="300px"/>
+<img src="./public/images/pageLayout.PNG" alt="Spread from Official Pokemon Handbook" height="300px"/>
+
+Here's my initial rough draft thumbnail, featuring a very good drawing of a Charmander.
+</br>
+<img src="./public/images/pokeAppSketch.jpg" alt="Thumbnail design sketch" height="300px"/>

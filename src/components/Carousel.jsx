@@ -1,5 +1,7 @@
 import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
+import PropTypes from 'prop-types';
+
 import '@brainhubeu/react-carousel/lib/style.css';
 
 /**
@@ -26,5 +28,9 @@ class PokeCarousel extends React.Component{
         );
     }
 }
+
+Carousel.propTypes = {
+    slides: PropTypes.array
+};
 
 export default PokeCarousel;
