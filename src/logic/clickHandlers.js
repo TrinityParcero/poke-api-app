@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PokeCarousel from '../components/Carousel';
 
-const { getPokeByType } = require('./pokeLogic');
+import { getPokeByType } from './pokeLogic';
 
 /**
  * gen button click. onClick method for generator button
  * gets checked status of all relevant inputs, then renders the results 
  * 
  */
-const genButtonClick = async () => {
+export const genButtonClick = async () => {
     try {
         const resultSpace = document.querySelector('#carousel');
         const typeInputs = document.querySelectorAll('input[name=type]');
@@ -46,5 +46,3 @@ const genButtonClick = async () => {
         console.log(`Something went wrong! Error: ${error}`);
     }
 };
-
-export default genButtonClick;

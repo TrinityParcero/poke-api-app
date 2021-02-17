@@ -1,4 +1,4 @@
-const PokeData = {
+export const PokeData = {
     types: [
         'grass',
         'fire',
@@ -22,8 +22,4 @@ const PokeData = {
     generations: [
         1, 2, 3, 4, 5, 6, 7, 8
     ]
-};
-
-module.exports = {
-    PokeData
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import SelectorFieldset from './components/SelectorFieldset';
 import { PokeData } from './pokeData';
-import genButtonClick from './logic/clickHandlers';
+import { genButtonClick } from './logic/clickHandlers';
 
 class App extends React.Component {
     render() {
