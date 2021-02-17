@@ -21,6 +21,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 I have a lot of fond memories of flipping through The Official Pokemon Handbook as a kid, so it was pretty easy for me when thinking about the visual design to decide that I wanted to try and imitate its (very 1999) design sensibilities for this.
 </br>
 <img src="./public/pokemonHandbook.jpg" alt="Official Pokemon Handbook (1999) by Maria S. Barbo" height="300px"/>
+<img src="./public/pageLayout.jpg" alt="Spread from Official Pokemon Handbook" height="300px"/>
 
 Here's my initial rough draft thumbnail, featuring a very good drawing of a Charmander.
 </br>
