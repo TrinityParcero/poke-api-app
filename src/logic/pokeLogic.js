@@ -30,7 +30,7 @@ const getPokeByType = async (type) => {
     const finishedPromises = await Promise.allSettled(pokeDataPromises);
     const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
     if (promiseErrors.length > 0) {
-        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors.`);
+        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors. Reason: ${promiseErrors[0].reason}`);
     }
     const fullPokemonData = finishedPromises.map(promise =>
         promise.value
@@ -53,10 +53,21 @@ const getBasicPokemonData = async (pokemon) => {
         .get(`${BasePokeAPIURL}/pokemon/${pokemon}`)
         .accept('application/json')).text);
 
+    const otherSprites = pokemonAPIResponse.sprites.other;
+    let officialArt = false;
+    if (otherSprites) {
+        if (otherSprites['official-artwork']) {
+            officialArt = otherSprites['official-artwork'].front_default;
+        }
+        else {
+            console.log(`Couldn't find official art for ${pokemonAPIResponse.name} :(`);
+        }
+    }
+
     return {
         name: pokemonAPIResponse.name,
         sprite: pokemonAPIResponse.sprites.front_default,
-        art: pokemonAPIResponse.sprites.other.official_artwork.front_default,
+        art: officialArt,
         types: pokemonAPIResponse.types
     };
 };
