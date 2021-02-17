@@ -56,6 +56,7 @@ const getBasicPokemonData = async (pokemon) => {
     return {
         name: pokemonAPIResponse.name,
         sprite: pokemonAPIResponse.sprites.front_default,
+        art: pokemonAPIResponse.sprites.other.official_artwork.front_default,
         types: pokemonAPIResponse.types
     };
 };
@@ -82,8 +83,8 @@ const getPokedexData = async (pokemon) => {
         generation: generationNumber,
         dexEntry: speciesAPIResponse.flavor_text_entries[0].flavor_text,
         genus
-    }
-}
+    };
+};
 
 module.exports = {
     getPokeByType,
