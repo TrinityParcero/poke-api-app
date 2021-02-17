@@ -24,4 +24,4 @@ I have a lot of fond memories of flipping through The Official Pokemon Handbook 
 
 Here's my initial rough draft thumbnail, featuring a very good drawing of a Charmander.
 </br>
-<img src="./public/pokeAppSketch.jpg" alt="Thumbnail design sketch" height="100px"/>
+<img src="./public/pokeAppSketch.jpg" alt="Thumbnail design sketch" height="300px"/>
