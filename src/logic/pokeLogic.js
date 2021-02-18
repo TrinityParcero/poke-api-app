@@ -8,7 +8,7 @@ const BasePokeAPIURL = 'https://pokeapi.co/api/v2';
  * @param {string} type type of pokemon to return
  * @returns {Array} array of all pokemon of type <type>
  */
-const getPokeByType = async (type) => {
+export const getPokeByType = async (type) => {
     console.log(`Getting pokemon of type ${type}`);
     const pokeTypeURL = `${BasePokeAPIURL}/type/${type}`;
     const response = await request
@@ -48,7 +48,7 @@ const getPokeByType = async (type) => {
  * @param {string} pokemon name of pokemon to get data for
  * @returns {object} pokemon data
  */
-const getBasicPokemonData = async (pokemon) => {
+export const getBasicPokemonData = async (pokemon) => {
     const pokemonAPIResponse = JSON.parse((await request
         .get(`${BasePokeAPIURL}/pokemon/${pokemon}`)
         .accept('application/json')).text);
@@ -79,7 +79,7 @@ const getBasicPokemonData = async (pokemon) => {
  * @param {string} pokemon name of pokemon to get data for
  * @returns {object} pokemon data
  */
-const getPokedexData = async (pokemon) => {
+export const getPokedexData = async (pokemon) => {
     const speciesAPIResponse = JSON.parse((await request
         .get(`${BasePokeAPIURL}/pokemon-species/${pokemon}`)
         .accept('application/json')).text);
@@ -95,9 +95,4 @@ const getPokedexData = async (pokemon) => {
         dexEntry: speciesAPIResponse.flavor_text_entries[0].flavor_text,
         genus
     };
-};
-
-module.exports = {
-    getPokeByType,
-    getPokedexData
 };
