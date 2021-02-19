@@ -16,6 +16,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   add caching?
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   filter by color, generation
+-   change colors on pokedex display based on pokemon type
 
 # Design Sketch / Inspiration
 
