@@ -88,13 +88,14 @@ export const getPokedexData = async (pokemon) => {
 
     const generationNumber = speciesAPIResponse.generation.url[speciesAPIResponse.generation.url.length - 2];
     const genus = (speciesAPIResponse.genera.filter(genusObject => genusObject.language.name === 'en'))[0].genus;
+    const dexEntry = (speciesAPIResponse.flavor_text_entries.filter(textObject => textObject.language.name === 'en'))[0].flavor_text;
 
     const finalData = {
         number: speciesAPIResponse.order,
         color: speciesAPIResponse.color.name,
         evolutionChainUrl: speciesAPIResponse.evolution_chain.url,
         generation: generationNumber,
-        dexEntry: speciesAPIResponse.flavor_text_entries[0].flavor_text,
+        dexEntry,
         genus
     };
 

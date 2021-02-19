@@ -12,10 +12,16 @@ class PokedexEntry extends React.Component{
 
     render(){
         return(
-            <div>
-                <h2>{this.pokemonData.name}</h2>
-                <h2>{this.pokemonData.number}</h2>
+            <div id="pokedexParent">
+                <h2>{`#${this.pokemonData.number} ${this.pokemonData.name.toUpperCase()}`}</h2>
+                <div id="dexSidebar">
+                    <p>{this.pokemonData.genus}</p>
+                    <p>{this.pokemonData.color}</p>
+                    <p>{this.pokemonData.generation}</p>
+                    <p>{this.pokemonData.types}</p>
+                </div>
                 <div id="dexImage">
+                    <div className="backCircle"></div>
                     <img src={this.pokemonData.art} alt={`${this.pokemonData.name} official art`}/>
                 </div>
                 <div id="dexText">
@@ -25,12 +31,7 @@ class PokedexEntry extends React.Component{
                 <div id="evolutionChain">
                     {this.pokemonData.evolutionChain}
                 </div>
-                <div id="dexSidebar">
-                    <p>{this.pokemonData.genus}</p>
-                    <p>{this.pokemonData.color}</p>
-                    <p>{this.pokemonData.generation}</p>
-                    <p>{this.pokemonData.types}</p>
-                </div>
+                
             </div>
         );
     }
