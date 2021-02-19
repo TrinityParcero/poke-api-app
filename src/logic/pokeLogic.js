@@ -20,7 +20,9 @@ export const getPokeByType = async (type) => {
     else if (!response.body.pokemon) {
         throw new Error(`No pokemon in response for type ${type}`);
     }
-    const pokeOfType = response.body.pokemon;
+
+    // remove mega evos they're very buggy
+    const pokeOfType = response.body.pokemon.filter(pokemon => !pokemon.pokemon.name.includes('mega'));
     // get data for each of those pokemon
     const pokeDataPromises = [];
     for (const pokemon of pokeOfType) {
@@ -28,6 +30,7 @@ export const getPokeByType = async (type) => {
     }
 
     const finishedPromises = await Promise.allSettled(pokeDataPromises);
+
     const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
     if (promiseErrors.length > 0) {
         console.log(`WARNING: ${promiseErrors.length} requests failed due to errors. Reason: ${promiseErrors[0].reason}`);

@@ -15,9 +15,13 @@ class PokedexEntry extends React.Component{
             <div id="pokedexParent">
                 <h2>{`#${this.pokemonData.number} ${this.pokemonData.name.toUpperCase()}`}</h2>
                 <div id="dexSidebar">
+                    <h3>GENUS</h3>
                     <p>{this.pokemonData.genus}</p>
+                    <h3>COLOR</h3>
                     <p>{this.pokemonData.color}</p>
+                    <h3>GENERATION</h3>
                     <p>{this.pokemonData.generation}</p>
+                    <h3>TYPES</h3>
                     <p>{this.pokemonData.types}</p>
                 </div>
                 <div id="dexImage">
