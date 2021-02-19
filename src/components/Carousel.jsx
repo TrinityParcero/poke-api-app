@@ -1,8 +1,30 @@
 import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
+import { ArrowLeft, ArrowRight } from 'react-bootstrap-icons';
 import PropTypes from 'prop-types';
 
 import '@brainhubeu/react-carousel/lib/style.css';
+
+import {pokeSlideClick } from '../logic/clickHandlers';
+
+class PokeSlide extends React.Component{
+    constructor(props){
+        super(props);
+        this.name = props.pokemon.name;
+        this.art = props.pokemon.art;
+        this.types = props.pokemon.types;
+        this.sprite = props.pokemon.sprite;
+    }
+
+    render(){
+        return(
+            <div className="slide" onClick={() => pokeSlideClick(this.name, this.art, this.types, this.sprite)}>
+                <img src={this.sprite} alt={`${this.name} sprite`}/>
+                <p className="slideOverlay">{this.name}</p>
+            </div>
+        );
+    }
+}
 
 /**
  * creates a carousel with the given slides
@@ -17,14 +39,11 @@ class PokeCarousel extends React.Component{
     // https://reactjsexample.com/a-react-way-react-component-that-does-not-suck/
     render(){
         const slides = this.slides.map(pokemon =>
-            <div className="slide">
-                <img src={pokemon.sprite} alt={`${pokemon.name} sprite`}/>
-                <p className="slideOverlay">{pokemon.name}</p>
-            </div>
+                <PokeSlide pokemon={pokemon}></PokeSlide>
             );
 
         return(
-            <Carousel arrows slides={slides} slidesPerPage={10} itemWidth={130} slidesPerScroll={3}/>
+            <Carousel addArrowClickHandler arrowLeft={<ArrowLeft className="icon-example" name="arrow-left" />} arrowRight={<ArrowRight className="icon-example" name="arrow-right"/>} slides={slides} slidesPerPage={10} itemWidth={130} slidesPerScroll={3}/>
         );
     }
 }

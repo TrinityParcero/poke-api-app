@@ -1,4 +1,5 @@
 import React from 'react';
+import { HouseDoor } from 'react-bootstrap-icons';
 
 import SelectorFieldset from './components/SelectorFieldset';
 import { PokeData } from './pokeData';
@@ -8,19 +9,22 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <header>
-                    <h1>PokéAPI App</h1>
-                    <p>Just a little app serving up data from the PokéAPI</p>
-                </header>
                 <main>
+                    <h1>POKÉ(API)DEX</h1>
+                    <div id="homeLink">
+                        <a href="https://trinity-parcero.web.app/" target="_blank" id="homeIcon">
+                            <HouseDoor color="yellow" />
+                        </a>
+                    </div>
                     <div id="selectors">
                         <SelectorFieldset category="type" values={PokeData.types} inputType="radio" />
                         {/* <SelectorFieldset category="type2" values={PokeData.types} inputType="radio" /> */}
-                        <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     </div>
                     <div id="pokedex">
                         {/* until a pokemon is selected, use this section to display tutorial messages */}
+                        <p>Try selecting some filters, then click a pokemon!</p>
                     </div>
+                    <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     <div id="carousel"></div>
                 </main>
                 <footer>
