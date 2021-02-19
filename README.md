@@ -9,9 +9,10 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 # Noted Bugs / Planned Improvements
 
 -   add a nice little loading gif for time it takes to load pokemon list
--   make individual pokemon clickable to get more info on them - pokedex entries, full type info, etc.
--   add an "about" page - link back to my main portfolio site
--   give it unique css styling - based on pokemon handbook 1999 ideally
+-   add a hover effect to carousel slides
+-   make the css less bad
+-   fix display of multiple types
+-   fix display of evolution chains
 -   add caching?
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   filter by color, generation
