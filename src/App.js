@@ -13,7 +13,7 @@ class App extends React.Component {
                     <h1>POKÉ(API)DEX</h1>
                     <div id="homeLink">
                         <a href="https://trinity-parcero.web.app/" target="_blank" id="homeIcon">
-                            <HouseDoor color="yellow" />
+                            <HouseDoor color="#ffb84b" />
                         </a>
                     </div>
                     <div id="selectors">
