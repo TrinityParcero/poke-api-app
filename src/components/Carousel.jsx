@@ -20,6 +20,7 @@ class PokeSlide extends React.Component{
         return(
             <div className="slide" onClick={() => pokeSlideClick(this.name, this.art, this.types, this.sprite)}>
                 <img src={this.sprite} alt={`${this.name} sprite`}/>
+                <div className="backCircle"></div>
                 <p className="slideOverlay">{this.name}</p>
             </div>
         );

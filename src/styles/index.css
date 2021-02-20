@@ -132,7 +132,7 @@ h2 {
     font-size: 2.5em;
     font-family: 'Truculenta', sans-serif;
 }
-#pokedex .backCircle {
+.backCircle {
     background-color: #251a66;
     border-radius: 50%;
     position: absolute;
@@ -185,11 +185,10 @@ h2 {
 .icon-example :hover {
     color: #d32d11;
 }
-.slide {
-    height: 100px;
-    background-color: #251a66;
-    border-radius: 50%;
-    padding: 2px 5px;
+.slide img {
+    position: absolute;
+    top: 15px;
+    right: 16px;
 }
 .slide p {
     position: sticky;
@@ -199,6 +198,14 @@ h2 {
     border-radius: 25%;
     bottom: 0px;
     text-align: center;
+}
+#carousel .backCircle {
+    position: static;
+    width: 105px;
+    height: 105px;
+}
+#carousel .backCircle:hover {
+    background-color: #d32d11;
 }
 
 /* FOOTER */
