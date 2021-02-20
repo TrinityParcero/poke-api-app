@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import PokeCarousel from '../components/Carousel';
 import DexEntry from '../components/DexEntry';
+import LoadText from '../components/LoadText';
 
 import {
     getPokeByType,
@@ -24,10 +25,9 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
         console.log(`You clicked ${name}`);
         const dexSpace = document.querySelector('#pokedex');
 
-        const loadingMessage = <p>{`Loading ${name} data`}</p>;
-
-        // clear old content
-        ReactDOM.render(loadingMessage, dexSpace);
+        // display a loading message
+        const loadingDisplay = <LoadText value={name} dataType='pokemon' />
+        ReactDOM.render(loadingDisplay, dexSpace);
 
         // the pokeAPI is a little weird - pokemon data is split between 2 endpoints
         const additionalData = await getPokedexData(name);
@@ -64,10 +64,14 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
 export const genButtonClick = async () => {
     try {
         const resultSpace = document.querySelector('#carousel');
+        const pokedexSpace = document.querySelector('#pokedex');
         const typeInputs = document.querySelectorAll('input[name=type]');
 
-        // clear old pokemon
-        // TODO: display a gif here until result set loads
+        // display a loading message
+        const loadingDisplay = <LoadText value={''} dataType='' />
+        ReactDOM.render(loadingDisplay, pokedexSpace);
+
+        // clear old pokemon from carousel
         ReactDOM.render('', resultSpace);
 
         const getPokesByTypePromises = [];
@@ -85,6 +89,18 @@ export const genButtonClick = async () => {
 
         const resultData = (await Promise.all(getPokesByTypePromises))[0];
 
+        let loadedMessage;
+
+        // if we got no results, warn the user that somethings up
+        if (resultData.length < 1) {
+            loadedMessage = <h3 className='loadText'>Uh oh! No results for those selections.</h3>;
+        }
+        else {
+            loadedMessage = <h3 className='loadText'>{`Found ${resultData.length} pokemon!`}</h3>
+        }
+
+        // replace loading text with results message
+        ReactDOM.render(loadedMessage, pokedexSpace);
         console.log(`Found ${resultData.length} pokemon`);
 
         const carousel = <PokeCarousel slides={resultData} />

@@ -33,6 +33,7 @@ class PokedexEntry extends React.Component{
                     <p className="continuedText">{this.pokemonData.text.slice(1)}</p>
                 </div>
                 <div id="evolutionChain">
+                    <h4>EVOLUTION CHAIN</h4>
                     {this.pokemonData.evolutionChain}
                 </div>
                 
