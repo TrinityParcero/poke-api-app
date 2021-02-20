@@ -22,7 +22,7 @@ class App extends React.Component {
                     </div>
                     <div id="pokedex">
                         {/* until a pokemon is selected, use this section to display tutorial messages */}
-                        <p>Try selecting some filters, then click a pokemon!</p>
+                        <p className='loadText'>Pick a type, then click the 'get pokemon' button!</p>
                     </div>
                     <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     <div id="carousel"></div>
