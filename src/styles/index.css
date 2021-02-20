@@ -39,6 +39,12 @@ a {
     display: inline-block;
     margin: 10px;
 }
+.loadText {
+    padding-top: 20%;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Truculenta', sans-serif;
+}
 
 /* SELECTORS */
 #type {
@@ -153,6 +159,12 @@ h2 {
     position: absolute;
     bottom: 40px;
     left: 190px;
+}
+#evolutionChain h4 {
+    color: red;
+    position: absolute;
+    bottom: 8px;
+    display: inline-block;
 }
 
 /* CAROUSEL */

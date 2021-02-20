@@ -13,6 +13,8 @@ export const getPokeByType = async (type) => {
     const pokeTypeURL = `${BasePokeAPIURL}/type/${type}`;
     const response = await request
         .get(pokeTypeURL)
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
         .accept('application/json');
     if (!response.body) {
         throw new Error(`Bad response getting pokemon by type ${type}`);
@@ -46,7 +48,6 @@ export const getPokeByType = async (type) => {
 
 /**
  * Get Basic Pokemon Data. returns name and front sprite of given pokemon
- * TODO: add caching?
  * 
  * @param {string} pokemon name of pokemon to get data for
  * @returns {object} pokemon data
@@ -54,6 +55,8 @@ export const getPokeByType = async (type) => {
 export const getBasicPokemonData = async (pokemon) => {
     const pokemonAPIResponse = JSON.parse((await request
         .get(`${BasePokeAPIURL}/pokemon/${pokemon}`)
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
         .accept('application/json')).text);
 
     const otherSprites = pokemonAPIResponse.sprites.other;
@@ -77,7 +80,6 @@ export const getBasicPokemonData = async (pokemon) => {
 
 /**
  * Get Pokedex Data. returns data we need to construct "Pokedex" page for a given <pokemon>
- * TODO: add caching?
  * 
  * @param {string} pokemon name of pokemon to get data for
  * @returns {object} pokemon data
@@ -86,6 +88,8 @@ export const getPokedexData = async (pokemon) => {
     const speciesAPIResponse = JSON.parse((await request
         .get(`${BasePokeAPIURL}/pokemon-species/${pokemon}`)
         .accept('application/json')
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
         .set('Content-Type', 'application/json')
     ).text);
 
@@ -110,6 +114,8 @@ export const getEvolutionChain = async (evolutionChainUrl) => {
     const evoChainResponse = JSON.parse((await request
         .get(evolutionChainUrl)
         .accept('application/json')
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
         .set('Content-Type', 'application/json')
     ).text).chain;
 
