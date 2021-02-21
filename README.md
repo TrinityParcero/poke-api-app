@@ -9,6 +9,8 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 # Noted Bugs / Planned Improvements
 
 -   fix hover effect on carousel slides - image blocks hitbox
+-   add css handling for smaller screens
+-   finalize styles - add diagonals
 -   fix display of evolution chains
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   filter by color, generation, second type
