@@ -23,15 +23,13 @@ h1 {
 
 /* MISC */
 body {
-    margin: 0 2% 0 2%;
     font-family: 'Noto Sans JP', sans-serif;
 }
 main {
     max-width: 1500px;
-    width: 75%;
+    width: 80%;
     margin: 0 auto;
     vertical-align: middle;
-    margin-bottom: 80px;
 }
 a {
     text-decoration: none;
@@ -65,12 +63,11 @@ div .pai#d32d11CheckboxAndLabel {
 }
 #selectors {
     display: inline-block;
-    margin-right: 10%;
-    margin-top: 100px;
     width: 30%;
+    height: 70%;
     background-color: white;
     border: 1px solid black;
-    margin-left: 8%;
+    margin: 8% 10% 2% 8%;
 }
 legend {
     font-size: 1.2em;
@@ -83,21 +80,25 @@ label {
 /* POKEDEX */
 #pokedex {
     display: inline-block;
-    height: 560px;
+    height: 70%;
+    max-height: 560px;
+    min-height: 470px;
     width: 40%;
     position: absolute;
-    border: 1px solid black;
     min-width: 550px;
 }
 #dexImage {
     display: inline-block;
-    height: 350px;
     position: absolute;
+    height: 60%;
+    width: 60%;
 }
 #dexImage img {
-    height: 350px;
-    top: 50px;
-    left: 20px;
+    height: 100%;
+    min-height: 150px;
+    max-height: 350px;
+    top: 20%;
+    left: 10%;
     position: absolute;
     z-index: 2;
 }
@@ -123,12 +124,13 @@ label {
 h2 {
     background-color: #d32d11;
     width: 300px;
-    float: right;
+    display: inline;
     text-align: right;
     padding: 25px 50px 5px 0px;
     color: #ffb84b;
     position: absolute;
-    margin-top: -20px;
+    right: 0px;
+    margin-top: 0px;
     font-size: 2.5em;
     font-family: 'Truculenta', sans-serif;
 }
@@ -136,18 +138,21 @@ h2 {
     background-color: #251a66;
     border-radius: 50%;
     position: absolute;
-    height: 200px;
-    left: 150px;
-    width: 200px;
-    top: 80px;
+    height: 70%;
+    width: 70%;
+    min-height: 80px;
+    max-height: 250px;
+    min-width: 80px;
+    max-width: 250px;
+    left: 25%;
+    top: 35%;
     z-index: 0;
 }
 #dexSidebar {
     background-color: #d32d11;
     width: 150px;
-    height: 450px;
+    height: 100%;
     padding: 10px;
-    padding-top: 100px;
     display: inline-block;
 }
 #dexSidebar p {
@@ -170,13 +175,9 @@ h2 {
 /* CAROUSEL */
 #carousel {
     display: block;
-    background-color: white;
-    z-index: 3;
     height: 200px;
-    margin: 0 auto;
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 8%;
+    position: relative;
 }
 .icon-example {
     font-size: 3em;
@@ -196,7 +197,7 @@ h2 {
     font-size: 1.1em;
     color: #251a66;
     border-radius: 25%;
-    bottom: 0px;
+    margin-top: 0px;
     text-align: center;
 }
 #carousel .backCircle {
@@ -215,8 +216,10 @@ footer {
     top: 96%;
     padding: 10px;
     width: 100%;
+    right: 0px;
+    left: 0px;
     z-index: 3;
-    margin-bottom: -30px;
+    margin-bottom: -10px;
 }
 footer p {
     color: white;
@@ -238,6 +241,9 @@ button {
 }
 #genButton {
     margin-left: 8%;
+    height: 50px;
+    width: 100px;
+    margin-top: 10px;
     display: block;
 }
 button:hover {
