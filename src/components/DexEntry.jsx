@@ -11,6 +11,19 @@ class PokedexEntry extends React.Component{
     }
 
     render(){
+        let typeDisplay = '';
+        if(this.pokemonData.types.length > 1){
+            for(let i = 0; i < this.pokemonData.types.length; i++){
+                typeDisplay +=(this.pokemonData.types[i]);
+                if(this.pokemonData.types[i+1]){
+                    typeDisplay += (' | ');
+                }
+            }
+        }
+        else{
+            typeDisplay = this.pokemonData.types[0];
+        }
+    
         return(
             <div id="pokedexParent">
                 <h2>{`#${this.pokemonData.number} ${this.pokemonData.name.toUpperCase()}`}</h2>
@@ -22,7 +35,7 @@ class PokedexEntry extends React.Component{
                     <h3>GENERATION</h3>
                     <p>{this.pokemonData.generation}</p>
                     <h3>TYPES</h3>
-                    <p>{this.pokemonData.types}</p>
+                    <p>{typeDisplay}</p>
                 </div>
                 <div id="dexImage">
                     <div className="backCircle"></div>

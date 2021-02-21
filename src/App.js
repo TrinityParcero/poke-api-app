@@ -13,18 +13,17 @@ class App extends React.Component {
                     <h1>POKÉ(API)DEX</h1>
                     <div id="homeLink">
                         <a href="https://trinity-parcero.web.app/" target="_blank" id="homeIcon">
-                            <HouseDoor color="yellow" />
+                            <HouseDoor color="#ffb84b" />
                         </a>
                     </div>
                     <div id="selectors">
                         <SelectorFieldset category="type" values={PokeData.types} inputType="radio" />
-                        {/* <SelectorFieldset category="type2" values={PokeData.types} inputType="radio" /> */}
+                        <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     </div>
                     <div id="pokedex">
                         {/* until a pokemon is selected, use this section to display tutorial messages */}
                         <p className='loadText'>Pick a type, then click the 'get pokemon' button!</p>
                     </div>
-                    <button id="genButton" onClick={genButtonClick}>get pokemon</button>
                     <div id="carousel"></div>
                 </main>
                 <footer>
