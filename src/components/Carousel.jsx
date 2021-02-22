@@ -7,6 +7,29 @@ import '@brainhubeu/react-carousel/lib/style.css';
 
 import {pokeSlideClick } from '../logic/clickHandlers';
 
+const Red = "#d32d11";
+const Blue = "#251a66";
+
+/**
+ * color active. sets color of div with <id> to red
+ * 
+ * @param {string} id 
+ */
+const colorActive = (id) =>{
+    const targetDiv = document.getElementById(id);
+    targetDiv.style.backgroundColor = Red;
+};
+
+/**
+ * color inactive. sets color of div with <id> to blue
+ * 
+ * @param {string} id 
+ */
+const colorInactive = (id) =>{
+    const targetDiv = document.getElementById(id);
+    targetDiv.style.backgroundColor = Blue;
+};
+
 class PokeSlide extends React.Component{
     constructor(props){
         super(props);
@@ -19,8 +42,11 @@ class PokeSlide extends React.Component{
     render(){
         return(
             <div className="slide" onClick={() => pokeSlideClick(this.name, this.art, this.types, this.sprite)}>
-                <img src={this.sprite} alt={`${this.name} sprite`}/>
-                <div className="backCircle"></div>
+                <img src={this.sprite} alt={`${this.name} sprite`} 
+                    onMouseOver={() => colorActive(`${this.name}Bg`)} 
+                    onMouseLeave={() => colorInactive(`${this.name}Bg`)}
+                />
+                <div className="backCircle" id={`${this.name}Bg`}></div>
                 <p className="slideOverlay">{this.name}</p>
             </div>
         );
