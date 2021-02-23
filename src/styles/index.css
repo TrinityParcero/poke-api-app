@@ -159,17 +159,46 @@ h2 {
     color: white;
 }
 #evolutionChain {
+    height: 100px;
     width: 300px;
     display: inline-block;
     position: absolute;
-    bottom: 40px;
-    left: 190px;
+    left: 195px;
+    bottom: 0px;
 }
-#evolutionChain h4 {
-    color: #d32d11;
-    position: absolute;
-    bottom: 8px;
+.evoBase,
+.evoFirst,
+.evoSecond {
     display: inline-block;
+    margin-right: 18px;
+}
+#evolutionChain img {
+    display: inline-block;
+    height: 90px;
+    position: absolute;
+    margin-top: 0px;
+}
+.evoBase img {
+    right: 212px;
+}
+.evoFirst img {
+    right: 115px;
+}
+.evoSecond img {
+    right: 15px;
+}
+#evolutionChain .backCircle {
+    position: static;
+    margin-top: 10%;
+    width: 80px;
+    height: 80px;
+    background-color: #6bafc9;
+}
+.evoArrow {
+    font-size: 2em;
+    position: static;
+    display: inline-block;
+    color: #d32d11;
 }
 
 /* CAROUSEL */
@@ -178,6 +207,7 @@ h2 {
     height: 200px;
     text-align: center;
     position: relative;
+    margin-top: 8%;
 }
 .icon-example {
     font-size: 3em;
@@ -197,7 +227,6 @@ h2 {
     font-size: 1.1em;
     color: #251a66;
     border-radius: 25%;
-    margin-top: 0px;
     text-align: center;
 }
 #carousel .backCircle {

@@ -109,8 +109,14 @@ export const getPokedexData = async (pokemon) => {
     return finalData;
 };
 
-
-export const getEvolutionChain = async (evolutionChainUrl) => {
+/**
+ * Get Evolution Chain. returns the names and sprites of pokemon in evolution chain at <evolutionChainUrl> 
+ * 
+ * @param {string} evolutionChainUrl url to request api to get further info on evolution chain
+ * @param {string} startName name of pokemon currently being displayed
+ * @param {string} startSprite url to sprite image of the pokemon currently being displayed
+ */
+export const getEvolutionChain = async (evolutionChainUrl, startName, startSprite) => {
     const evoChainResponse = JSON.parse((await request
         .get(evolutionChainUrl)
         .accept('application/json')
@@ -120,28 +126,57 @@ export const getEvolutionChain = async (evolutionChainUrl) => {
     ).text).chain;
 
     const baseSpecies = evoChainResponse.species.name;
-    const evolutionsArray = [];
+
+    const evolutionChain = {};
+
+    // base level will always exist
+    evolutionChain[0] = [];
+
+    if (baseSpecies === startName) {
+        evolutionChain[0].push({ name: startName, sprite: startSprite });
+    }
+    else {
+        const getDataResponse = await (getBasicPokemonData(baseSpecies));
+        const baseSprite = getDataResponse.sprite;
+        evolutionChain[0].push({ name: baseSpecies, sprite: baseSprite });
+    }
 
     // this pokemon DOES have evolutions
     let evolutions = evoChainResponse.evolves_to;
-    evolutionsArray.push(...(evolutions.map(pokemon => pokemon.species.name)));
 
     // TODO: rewrite this in a more efficient way - recursion probably
-    // TODO: add evolution methods for each evolution - seems like pokeapi might be buggy on this
     for (const evolution of evolutions) {
+        if (!evolutionChain[1]) {
+            evolutionChain[1] = [];
+        }
+        const name = evolution.species.name;
+        if (name === startName) {
+            evolutionChain[1].push({ name: startName, sprite: startSprite });
+        }
+        else {
+            const getDataResponse = await (getBasicPokemonData(name));
+            const firstLevelSprite = getDataResponse.sprite;
+            evolutionChain[1].push({ name: name, sprite: firstLevelSprite });
+        }
         if (evolution.evolves_to) {
             const secondLevelEvos = evolution.evolves_to;
-            evolutionsArray.push(...(secondLevelEvos.map(pokemon => pokemon.species.name)));
             for (const secondLevelEvo of secondLevelEvos) {
-                if (secondLevelEvo.evolves_to) {
-                    const thirdLevelEvos = secondLevelEvo.evolves_to;
-                    evolutionsArray.push(...(thirdLevelEvos.map(pokemon => pokemon.species.name)));
+                if (!evolutionChain[2]) {
+                    evolutionChain[2] = [];
+                }
+                const secondLevelName = secondLevelEvo.species.name;
+                if (secondLevelName === startName) {
+                    evolutionChain[2].push({ name: startName, sprite: startSprite });
+                }
+                else {
+                    const getDataResponse = await (getBasicPokemonData(secondLevelName));
+                    const secondLevelSprite = getDataResponse.sprite;
+                    evolutionChain[2].push({ name: secondLevelName, sprite: secondLevelSprite });
                 }
             }
         }
     }
 
-    evolutionsArray.unshift(baseSpecies);
-
-    return evolutionsArray;
+    console.log(evolutionChain);
+    return evolutionChain;
 };

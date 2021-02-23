@@ -31,7 +31,7 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
 
         // the pokeAPI is a little weird - pokemon data is split between 2 endpoints
         const additionalData = await getPokedexData(name);
-        const evolutionChain = await getEvolutionChain(additionalData.evolutionChainUrl);
+        const evolutionChain = await getEvolutionChain(additionalData.evolutionChainUrl, name, sprite);
 
         const typesMapped = types.map(entry => entry.type.name);
 
