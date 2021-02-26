@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 
 import PokeCarousel from '../components/Carousel';
 import DexEntry from '../components/DexEntry';
-import LoadText from '../components/LoadText';
+import { LoadText } from '../components/displayText';
 
+import {
+    genButtonClickTimeout,
+    pokeSlideClickTimeout
+} from './timeoutHandlers';
 import {
     getPokeByType,
     getPokedexData,
@@ -24,6 +28,8 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
     try {
         console.log(`You clicked ${name}`);
         const dexSpace = document.querySelector('#pokedex');
+
+        setTimeout(pokeSlideClickTimeout, 8000);
 
         // display a loading message
         const loadingDisplay = <LoadText value={name} dataType='pokemon' />
@@ -63,6 +69,8 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
  */
 export const genButtonClick = async () => {
     try {
+        setTimeout(genButtonClickTimeout, 8000);
+
         const resultSpace = document.querySelector('#carousel');
         const pokedexSpace = document.querySelector('#pokedex');
         const typeInputs = document.querySelectorAll('input[name=type]');

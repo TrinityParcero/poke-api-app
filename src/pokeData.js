@@ -21,5 +21,12 @@ export const PokeData = {
     ],
     generations: [
         1, 2, 3, 4, 5, 6, 7, 8
+    ],
+    hyphenatedNames: [
+        "ho-oh",
+        "porygon-z",
+        "jangmo-o",
+        "hakamo-o",
+        "kommo-o"
     ]
 };

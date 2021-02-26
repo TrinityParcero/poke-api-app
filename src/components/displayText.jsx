@@ -1,6 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+class TimeoutText extends React.Component{
+    constructor(props){
+        super(props);
+        this.notes = props.notes;
+    }
+
+    render(){
+        return(
+            <div className="loadText">
+                <h3>Sorry! Couldn't load that! Try something else!</h3>
+                <p>{`Notes: ${this.notes}`}</p>
+                <img src="..\images\uhoh.gif" alt="confused raichu gif" height='100px'/>
+            </div>
+        )
+    }
+}
+
 /**
  * Load Text. displays a loading message and gif
  * 
@@ -27,4 +44,7 @@ LoadText.propTypes = {
     dataTyp: PropTypes.string
 };
 
-export default LoadText;
+export {
+    LoadText,
+    TimeoutText
+}

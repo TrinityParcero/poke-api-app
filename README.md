@@ -12,12 +12,11 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   add a timeout on get pokemon and dex entry so if something goes wrong it doesnt hang
 -   finalize styles - add diagonals
 -   filter by color, generation, second type
+-   make evolution chain icons clickable
 -   change colors on pokedex display based on pokemon type
 -   add text search which includes prefix and fuzzy matching for pokemon names
--   fix react warnings in console
--   fix weird text thing where it misses a space sometimes (probably a newline intended?)
+-   fix react warnings in console, fix accessibility warnings
 -   add special handling for eeveelutions in evolution chain
--   remove special forms from results i.e tornadus-incarnate which break when clicked
 
 # Design Sketch / Inspiration
 
