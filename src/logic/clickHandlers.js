@@ -29,8 +29,6 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
         console.log(`You clicked ${name}`);
         const dexSpace = document.querySelector('#pokedex');
 
-        setTimeout(pokeSlideClickTimeout, 8000);
-
         // display a loading message
         const loadingDisplay = <LoadText value={name} dataType='pokemon' />
         ReactDOM.render(loadingDisplay, dexSpace);
@@ -56,9 +54,11 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
         const dexEntry = <DexEntry pokemonData={fullDexData} />
 
         ReactDOM.render(dexEntry, dexSpace);
+        return;
 
     } catch (error) {
         console.log(`Something went wrong on pokeSlide click. Error: ${error}`);
+        pokeSlideClickTimeout(name, error);
     }
 };
 
@@ -69,8 +69,6 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
  */
 export const genButtonClick = async () => {
     try {
-        setTimeout(genButtonClickTimeout, 8000);
-
         const resultSpace = document.querySelector('#carousel');
         const pokedexSpace = document.querySelector('#pokedex');
         const typeInputs = document.querySelectorAll('input[name=type]');
@@ -117,7 +115,10 @@ export const genButtonClick = async () => {
             carousel,
             resultSpace
         );
+        return;
+
     } catch (error) {
         console.log(`Something went wrong on genButton click! Error: ${error}`);
+        genButtonClickTimeout(error);
     }
 };

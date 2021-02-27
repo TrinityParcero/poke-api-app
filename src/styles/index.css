@@ -10,10 +10,18 @@ h1 {
     font-family: 'Truculenta', sans-serif;
     font-weight: 700;
     margin: 0;
+    top: 0px;
     line-height: 1em;
     font-size: 3em;
 }
 #homeLink {
+    font-size: 2.5em;
+    display: inline-block;
+    position: absolute;
+    top: 100px;
+    background-color: #d32d11;
+}
+#aboutLink {
     font-size: 2.5em;
     display: inline-block;
     position: absolute;
@@ -22,6 +30,10 @@ h1 {
 }
 
 /* MISC */
+html {
+    border: 12px solid #d32d11;
+    height: 100%;
+}
 body {
     font-family: 'Noto Sans JP', sans-serif;
 }
@@ -50,23 +62,18 @@ a {
     margin: 0 auto;
     bottom: 20px;
     padding: 10px 20px;
-    width: 100px;
     float: left;
     font-size: 0.8em;
     border: 1px solid #ffb84b;
     margin: 10px;
 }
-div .pai#d32d11CheckboxAndLabel {
+div .pairedCheckboxAndLabel {
     display: inline-block;
     font-family: sans-serif;
     font-weight: normal;
 }
 #selectors {
     display: inline-block;
-    width: 30%;
-    height: 70%;
-    background-color: white;
-    border: 1px solid black;
     margin: 8% 10% 2% 8%;
 }
 legend {
@@ -85,6 +92,7 @@ label {
     min-height: 470px;
     width: 40%;
     position: absolute;
+    top: 0px;
     min-width: 550px;
 }
 #dexImage {
@@ -237,7 +245,7 @@ h2 {
 
 /* FOOTER */
 footer {
-    background: black;
+    background: #d32d11;
     position: fixed;
     top: 96%;
     padding: 10px;

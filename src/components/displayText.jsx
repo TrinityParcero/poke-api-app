@@ -10,9 +10,9 @@ class TimeoutText extends React.Component{
     render(){
         return(
             <div className="loadText">
-                <h3>Sorry! Couldn't load that! Try something else!</h3>
-                <p>{`Notes: ${this.notes}`}</p>
-                <img src="..\images\uhoh.gif" alt="confused raichu gif" height='100px'/>
+                <img src="..\images\uhoh.gif" alt="confused raichu gif" height='150px'/>
+                <h3>Something went wrong! Try something else!</h3>
+                <p>{`${this.notes}`}</p>
             </div>
         )
     }

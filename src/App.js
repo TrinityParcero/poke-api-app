@@ -1,5 +1,5 @@
 import React from 'react';
-import { HouseDoor } from 'react-bootstrap-icons';
+import { HouseDoor, JournalText } from 'react-bootstrap-icons';
 
 import SelectorFieldset from './components/SelectorFieldset';
 import { PokeData } from './pokeData';
@@ -13,7 +13,12 @@ class App extends React.Component {
                     <h1>POKÉ(API)DEX</h1>
                     <div id="homeLink">
                         <a href="https://trinity-parcero.web.app/" target="_blank" id="homeIcon">
-                            <HouseDoor color="#ffb84b" />
+                            <HouseDoor color="#ffb84b" title="to main portfolio page" />
+                        </a>
+                    </div>
+                    <div id="aboutLink">
+                        <a href="https://github.com/TrinityParcero/poke-api-app/blob/main/README.md" target="_blank" id="aboutIcon">
+                            <JournalText color="#ffb84b" title="to about page" />
                         </a>
                     </div>
                     <div id="selectors">
