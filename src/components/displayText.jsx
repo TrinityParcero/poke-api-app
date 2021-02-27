@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class TimeoutText extends React.Component{
+class ErrorText extends React.Component{
     constructor(props){
         super(props);
         this.notes = props.notes;
@@ -11,7 +11,7 @@ class TimeoutText extends React.Component{
         return(
             <div className="loadText">
                 <img src="..\images\uhoh.gif" alt="confused raichu gif" height='150px'/>
-                <h3>Something went wrong! Try something else!</h3>
+                <h3>Something went wrong! Sorry about that!</h3>
                 <p>{`${this.notes}`}</p>
             </div>
         )
@@ -46,5 +46,5 @@ LoadText.propTypes = {
 
 export {
     LoadText,
-    TimeoutText
+    ErrorText
 }

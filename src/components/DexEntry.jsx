@@ -2,6 +2,56 @@ import React from 'react';
 import {ArrowRight} from 'react-bootstrap-icons';
 import PropTypes from 'prop-types';
 
+import {pokeSlideClick} from '../logic/clickHandlers';
+
+const Yellow = "#ffb84b";
+const Blue = "#6bafc9";
+
+/**
+ * color active. sets color of div with <id> to yellow
+ * 
+ * @param {string} id 
+ */
+const colorActive = (id) =>{
+    const targetDiv = document.getElementById(id);
+    targetDiv.style.backgroundColor = Yellow;
+};
+
+/**
+ * color inactive. sets color of div with <id> to blue
+ * 
+ * @param {string} id 
+ */
+const colorInactive = (id) =>{
+    const targetDiv = document.getElementById(id);
+    targetDiv.style.backgroundColor = Blue;
+};
+
+/**
+ * an individual element of an evolution chain with sprite and bg circle
+ */
+class ChainElement extends React.Component{
+    constructor(props){
+        super(props);
+        this.evolutionLevel = props.evolutionLevel;
+        this.pokemon = props.pokemon;
+    }
+
+    render(){
+
+        return(
+            <span>
+                <img src={this.pokemon.sprite} alt={`${this.pokemon.name} sprite`}
+                    onMouseOver={() => colorActive(`${this.pokemon.name}evoBg`)} 
+                    onMouseLeave={() => colorInactive(`${this.pokemon.name}evoBg`)}
+                    onClick={() => pokeSlideClick(this.pokemon)}
+                /> 
+                <div id={`${this.pokemon.name}evoBg`} className={`backCircle backCircleEvo${this.evolutionLevel}`}></div>
+            </span>
+        );
+    }
+}
+
 /**
  * handles display of pokemon evolution chain
  */
@@ -28,10 +78,7 @@ class EvolutionChain extends React.Component{
             <div className="evoFirst">
                 {/* <ArrowRight className="evoArrow"/> */}
                 {this.evolutionData[1].map(pokemon => 
-                    <span>
-                        <img src={pokemon.sprite} alt={`${pokemon.name} sprite`}/> 
-                        <div className="backCircle backCircleEvo1"></div>
-                    </span>
+                    <ChainElement pokemon={pokemon} evolutionLevel="1"/>
                 )}
             </div>;
             if(secondLevel){
@@ -39,10 +86,7 @@ class EvolutionChain extends React.Component{
                 <div className="evoSecond">
                     {/* <ArrowRight className="evoArrow"/> */}
                     {this.evolutionData[2].map(pokemon => 
-                        <span>
-                            <img src={pokemon.sprite} alt={`${pokemon.name} sprite`}/> 
-                            <div className="backCircle backCircleEvo2"></div>
-                        </span>
+                        <ChainElement pokemon={pokemon} evolutionLevel="2"/>
                     )}
                 </div>;
             }
@@ -52,10 +96,7 @@ class EvolutionChain extends React.Component{
             <div>
                 <div className="evoBase">
                     {this.evolutionData[0].map(pokemon => 
-                        <span>
-                            <img src={pokemon.sprite} alt={`${pokemon.name} sprite`}/>
-                            <div className="backCircle backCircleEvo0"></div>
-                        </span>
+                        <ChainElement pokemon={pokemon} evolutionLevel="0"/>
                     )}
                 </div>
                 {firstLevelDiv}

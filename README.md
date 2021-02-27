@@ -11,7 +11,6 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   add css handling for smaller screens
 -   finalize styles - add diagonals
 -   filter by color, generation, second type
--   make evolution chain icons clickable
 -   change colors on pokedex display based on pokemon type
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   fix react warnings in console, fix accessibility warnings
