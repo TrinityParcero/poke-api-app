@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 
 import PokeCarousel from '../components/Carousel';
 import DexEntry from '../components/DexEntry';
-import LoadText from '../components/LoadText';
+import { LoadText } from '../components/displayText';
 
+import {
+    genButtonClickTimeout,
+    pokeSlideClickTimeout
+} from './timeoutHandlers';
 import {
     getPokeByType,
     getPokedexData,
@@ -50,9 +54,11 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
         const dexEntry = <DexEntry pokemonData={fullDexData} />
 
         ReactDOM.render(dexEntry, dexSpace);
+        return;
 
     } catch (error) {
         console.log(`Something went wrong on pokeSlide click. Error: ${error}`);
+        pokeSlideClickTimeout(name, error);
     }
 };
 
@@ -109,7 +115,10 @@ export const genButtonClick = async () => {
             carousel,
             resultSpace
         );
+        return;
+
     } catch (error) {
         console.log(`Something went wrong on genButton click! Error: ${error}`);
+        genButtonClickTimeout(error);
     }
 };

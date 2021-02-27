@@ -1,6 +1,9 @@
-const request = require('superagent');
+import request from 'superagent';
+
+import { PokeData } from '../pokeData';
 
 const BasePokeAPIURL = 'https://pokeapi.co/api/v2';
+const HyphenatedNames = PokeData.hyphenatedNames;
 
 /**
  * Get Pokemon by Type. makes a request to pokeAPI to get pokemon of type <type>
@@ -23,8 +26,12 @@ export const getPokeByType = async (type) => {
         throw new Error(`No pokemon in response for type ${type}`);
     }
 
-    // remove mega evos they're very buggy
-    const pokeOfType = response.body.pokemon.filter(pokemon => !pokemon.pokemon.name.includes('mega'));
+    // remove mega evolutions and special forms
+    // TODO: fix whatever makes them break when clicked and re-add them to result set
+    const pokeOfType = response.body.pokemon.filter(pokemon =>
+        (!pokemon.pokemon.name.includes('-')) || (HyphenatedNames.includes(pokemon.pokemon.name))
+    );
+
     // get data for each of those pokemon
     const pokeDataPromises = [];
     for (const pokemon of pokeOfType) {
@@ -144,7 +151,6 @@ export const getEvolutionChain = async (evolutionChainUrl, startName, startSprit
     // this pokemon DOES have evolutions
     let evolutions = evoChainResponse.evolves_to;
 
-    // TODO: rewrite this in a more efficient way - recursion probably
     for (const evolution of evolutions) {
         if (!evolutionChain[1]) {
             evolutionChain[1] = [];
@@ -176,7 +182,5 @@ export const getEvolutionChain = async (evolutionChainUrl, startName, startSprit
             }
         }
     }
-
-    console.log(evolutionChain);
     return evolutionChain;
 };
