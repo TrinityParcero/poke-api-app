@@ -13,6 +13,7 @@ const HyphenatedNames = PokeData.hyphenatedNames;
  */
 export const getPokeByType = async (type) => {
     console.log(`Getting pokemon of type ${type}`);
+
     const pokeTypeURL = `${BasePokeAPIURL}/type/${type}`;
     const response = await request
         .get(pokeTypeURL)
@@ -120,10 +121,9 @@ export const getPokedexData = async (pokemon) => {
  * Get Evolution Chain. returns the names and sprites of pokemon in evolution chain at <evolutionChainUrl> 
  * 
  * @param {string} evolutionChainUrl url to request api to get further info on evolution chain
- * @param {string} startName name of pokemon currently being displayed
- * @param {string} startSprite url to sprite image of the pokemon currently being displayed
+ * @param {object} startPokemon data of pokemon currently being displayed
  */
-export const getEvolutionChain = async (evolutionChainUrl, startName, startSprite) => {
+export const getEvolutionChain = async (evolutionChainUrl, startPokemon) => {
     const evoChainResponse = JSON.parse((await request
         .get(evolutionChainUrl)
         .accept('application/json')
@@ -139,31 +139,46 @@ export const getEvolutionChain = async (evolutionChainUrl, startName, startSprit
     // base level will always exist
     evolutionChain[0] = [];
 
+    const startName = startPokemon.name;
+    const startSprite = startPokemon.sprite;
+    const startTypes = startPokemon.types;
+    const startArt = startPokemon.art;
+
     if (baseSpecies === startName) {
-        evolutionChain[0].push({ name: startName, sprite: startSprite });
+        evolutionChain[0].push({
+            name: startName,
+            sprite: startSprite,
+            types: startTypes,
+            art: startArt
+        });
     }
     else {
-        const getDataResponse = await (getBasicPokemonData(baseSpecies));
-        const baseSprite = getDataResponse.sprite;
-        evolutionChain[0].push({ name: baseSpecies, sprite: baseSprite });
+        const basePokeData = await (getBasicPokemonData(baseSpecies));
+
+        evolutionChain[0].push(basePokeData);
     }
 
-    // this pokemon DOES have evolutions
+    // first level of evolutions
     let evolutions = evoChainResponse.evolves_to;
-
     for (const evolution of evolutions) {
         if (!evolutionChain[1]) {
             evolutionChain[1] = [];
         }
-        const name = evolution.species.name;
-        if (name === startName) {
-            evolutionChain[1].push({ name: startName, sprite: startSprite });
+        const firstEvoName = evolution.species.name;
+        if (firstEvoName === startName) {
+            evolutionChain[1].push({
+                name: startName,
+                sprite: startSprite,
+                types: startTypes,
+                art: startArt
+            });
         }
         else {
-            const getDataResponse = await (getBasicPokemonData(name));
-            const firstLevelSprite = getDataResponse.sprite;
-            evolutionChain[1].push({ name: name, sprite: firstLevelSprite });
+            const firstEvoData = await (getBasicPokemonData(firstEvoName));
+            evolutionChain[1].push(firstEvoData);
         }
+
+        // second level of evolutions
         if (evolution.evolves_to) {
             const secondLevelEvos = evolution.evolves_to;
             for (const secondLevelEvo of secondLevelEvos) {
@@ -172,12 +187,16 @@ export const getEvolutionChain = async (evolutionChainUrl, startName, startSprit
                 }
                 const secondLevelName = secondLevelEvo.species.name;
                 if (secondLevelName === startName) {
-                    evolutionChain[2].push({ name: startName, sprite: startSprite });
+                    evolutionChain[2].push({
+                        name: startName,
+                        sprite: startSprite,
+                        types: startTypes,
+                        art: startArt
+                    });
                 }
                 else {
-                    const getDataResponse = await (getBasicPokemonData(secondLevelName));
-                    const secondLevelSprite = getDataResponse.sprite;
-                    evolutionChain[2].push({ name: secondLevelName, sprite: secondLevelSprite });
+                    const secondEvoData = await (getBasicPokemonData(secondLevelName));
+                    evolutionChain[2].push(secondEvoData);
                 }
             }
         }

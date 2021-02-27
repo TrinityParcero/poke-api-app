@@ -33,21 +33,18 @@ const colorInactive = (id) =>{
 class PokeSlide extends React.Component{
     constructor(props){
         super(props);
-        this.name = props.pokemon.name;
-        this.art = props.pokemon.art;
-        this.types = props.pokemon.types;
-        this.sprite = props.pokemon.sprite;
+        this.pokemon = props.pokemon;
     }
 
     render(){
         return(
-            <div className="slide" onClick={() => pokeSlideClick(this.name, this.art, this.types, this.sprite)}>
-                <img src={this.sprite} alt={`${this.name} sprite`} 
-                    onMouseOver={() => colorActive(`${this.name}Bg`)} 
-                    onMouseLeave={() => colorInactive(`${this.name}Bg`)}
+            <div className="slide" onClick={() => pokeSlideClick(this.pokemon)}>
+                <img src={this.pokemon.sprite} alt={`${this.pokemon.name} sprite`} 
+                    onMouseOver={() => colorActive(`${this.pokemon.name}Bg`)} 
+                    onMouseLeave={() => colorInactive(`${this.pokemon.name}Bg`)}
                 />
-                <div className="backCircle" id={`${this.name}Bg`}></div>
-                <p className="slideOverlay">{this.name}</p>
+                <div className="backCircle" id={`${this.pokemon.name}Bg`}></div>
+                <p className="slideOverlay">{this.pokemon.name}</p>
             </div>
         );
     }

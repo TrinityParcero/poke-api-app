@@ -5,10 +5,7 @@ import PokeCarousel from '../components/Carousel';
 import DexEntry from '../components/DexEntry';
 import { LoadText } from '../components/displayText';
 
-import {
-    genButtonClickTimeout,
-    pokeSlideClickTimeout
-} from './timeoutHandlers';
+import { displayErrorMessage } from './errorHandlers';
 import {
     getPokeByType,
     getPokedexData,
@@ -24,18 +21,23 @@ import {
  * @param {array} types pokemon types
  * @param {string} sprite link to pokemon sprite
  */
-export const pokeSlideClick = async (name, art, types, sprite) => {
+export const pokeSlideClick = async (pokemon) => {
     try {
-        console.log(`You clicked ${name}`);
         const dexSpace = document.querySelector('#pokedex');
+
+        const name = pokemon.name;
+        const types = pokemon.types;
+        const art = pokemon.art;
+
+        console.log(`You clicked ${name}`);
 
         // display a loading message
         const loadingDisplay = <LoadText value={name} dataType='pokemon' />
         ReactDOM.render(loadingDisplay, dexSpace);
 
-        // the pokeAPI is a little weird - pokemon data is split between 2 endpoints
+        // the pokeAPI is a little weird - pokemon data is split between a few endpoints
         const additionalData = await getPokedexData(name);
-        const evolutionChain = await getEvolutionChain(additionalData.evolutionChainUrl, name, sprite);
+        const evolutionChain = await getEvolutionChain(additionalData.evolutionChainUrl, pokemon);
 
         const typesMapped = types.map(entry => entry.type.name);
 
@@ -58,7 +60,7 @@ export const pokeSlideClick = async (name, art, types, sprite) => {
 
     } catch (error) {
         console.log(`Something went wrong on pokeSlide click. Error: ${error}`);
-        pokeSlideClickTimeout(name, error);
+        displayErrorMessage(error);
     }
 };
 
@@ -119,6 +121,6 @@ export const genButtonClick = async () => {
 
     } catch (error) {
         console.log(`Something went wrong on genButton click! Error: ${error}`);
-        genButtonClickTimeout(error);
+        displayErrorMessage(error);
     }
 };
