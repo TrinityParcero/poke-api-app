@@ -8,7 +8,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
--   add css handling for smaller screens
+-   **in progress** add css handling for smaller screens
 -   finalize styles - add diagonals
 -   filter by color, generation, second type
 -   change colors on pokedex display based on pokemon type
@@ -22,7 +22,6 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 **PokeAPI bugs**
 
 -   text for dex entries often has missing spaces
--   grass type currently returns a NOT FOUND error
 -   certain pokemon consistently return a NOT FOUND error when attempting to get their info (Mothim, Teddiursa)
 
 **Technical issues**
