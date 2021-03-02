@@ -28,6 +28,9 @@ h1 {
 }
 
 /* MISC */
+html {
+    height: 100vh;
+}
 body {
     font-family: 'Noto Sans JP', sans-serif;
     border: 12px solid #d32d11;
@@ -90,7 +93,7 @@ label {
     min-height: 450px;
     max-height: 750px;
     height: 80%;
-    max-width: 550px;
+    width: 550px;
     position: relative;
     float: right;
     margin-bottom: 2%;
