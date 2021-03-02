@@ -1,16 +1,14 @@
 /* H1 + HOMELINK */
 h1 {
-    vertical-align: left;
     display: inline-block;
     position: absolute;
     background-color: #d32d11;
-    padding: 20px;
-    margin: 0 auto;
+    padding: 40px 20px 20px 20px;
     color: #ffb84b;
     font-family: 'Truculenta', sans-serif;
     font-weight: 700;
     margin: 0;
-    top: 0px;
+    top: -20px;
     line-height: 1em;
     font-size: 3em;
 }
@@ -30,18 +28,23 @@ h1 {
 }
 
 /* MISC */
-html {
-    border: 12px solid #d32d11;
-    height: 100%;
-}
 body {
     font-family: 'Noto Sans JP', sans-serif;
+    border: 12px solid #d32d11;
+    margin: 0px;
+    height: 100vh;
 }
 main {
     max-width: 1500px;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
-    vertical-align: middle;
+}
+#leftChunk {
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    height: 520px;
+    margin-bottom: 2%;
 }
 a {
     text-decoration: none;
@@ -55,26 +58,24 @@ a {
     font-size: 2em;
     font-family: 'Truculenta', sans-serif;
 }
+#errorImage {
+    border: 3px solid #d32d11;
+}
 
 /* SELECTORS */
 #type {
-    vertical-align: middle;
-    margin: 0 auto;
-    bottom: 20px;
     padding: 10px 20px;
     float: left;
     font-size: 0.8em;
     border: 1px solid #ffb84b;
     margin: 10px;
 }
-div .pairedCheckboxAndLabel {
-    display: inline-block;
-    font-family: sans-serif;
-    font-weight: normal;
-}
 #selectors {
     display: inline-block;
-    margin: 8% 10% 2% 8%;
+    top: 100px;
+    left: 50px;
+    margin: 0% 0% 2% 8%;
+    position: absolute;
 }
 legend {
     font-size: 1.2em;
@@ -85,26 +86,27 @@ label {
 }
 
 /* POKEDEX */
-#pokedex {
-    display: inline-block;
-    height: 70%;
-    max-height: 560px;
-    min-height: 470px;
-    width: 40%;
-    position: absolute;
-    top: 0px;
-    min-width: 550px;
+.pokedex {
+    min-height: 450px;
+    max-height: 750px;
+    height: 80%;
+    max-width: 550px;
+    position: relative;
+    float: right;
+    margin-bottom: 2%;
+}
+#pokedexTop {
+    display: none;
 }
 #dexImage {
     display: inline-block;
-    position: absolute;
-    height: 60%;
-    width: 60%;
+    position: relative;
+    height: 300px;
+    width: 300px;
 }
 #dexImage img {
     height: 100%;
     min-height: 150px;
-    max-height: 350px;
     top: 20%;
     left: 10%;
     position: absolute;
@@ -122,11 +124,9 @@ label {
 }
 #dexText {
     display: inline-block;
-    position: absolute;
-    margin-right: 10px;
-    margin-left: 20px;
-    max-width: 380px;
-    bottom: 100px;
+    position: relative;
+    margin: 50px 10px 10px 50px;
+    width: 300px;
     line-height: 1.1em;
 }
 h2 {
@@ -140,6 +140,7 @@ h2 {
     right: 0px;
     margin-top: 0px;
     font-size: 2.5em;
+    z-index: 1;
     font-family: 'Truculenta', sans-serif;
 }
 .backCircle {
@@ -158,21 +159,23 @@ h2 {
 }
 #dexSidebar {
     background-color: #d32d11;
+    position: absolute;
     width: 150px;
-    height: 100%;
-    padding: 10px;
+    height: 436px;
+    right: 0px;
+    padding: 80px 10px 10px 10px;
+    z-index: 0;
     display: inline-block;
 }
 #dexSidebar p {
     color: white;
 }
 #evolutionChain {
-    height: 100px;
     width: 300px;
     display: inline-block;
-    position: absolute;
-    left: 195px;
-    bottom: 0px;
+    position: relative;
+    margin-bottom: 2%;
+    left: 50px;
 }
 .evoBase,
 .evoFirst,
@@ -212,10 +215,8 @@ h2 {
 /* CAROUSEL */
 #carousel {
     display: block;
-    height: 200px;
     text-align: center;
     position: relative;
-    margin-top: 8%;
 }
 .icon-example {
     font-size: 3em;
@@ -270,22 +271,59 @@ button {
     color: white;
     padding: 5px;
     text-align: center;
-    display: inline-block;
     border: none;
 }
 #genButton {
-    margin-left: 8%;
     height: 50px;
     width: 100px;
-    margin-top: 10px;
     display: block;
 }
 button:hover {
-    color: #ffb84b;
+    background-color: #6bafc9;
+}
+
+/* SMALL DESKTOP */
+@media screen and (max-width: 1300px) {
+    body {
+        height: 100%;
+    }
+    main {
+        width: 90%;
+    }
+    #selectors {
+        margin: 100px 0% 8% 10%;
+    }
 }
 
 /* TABLET */
 @media screen and (max-width: 900px) {
+    body {
+        height: 100%;
+    }
+    main {
+        width: 100%;
+    }
+    #pokedexBottom {
+        display: none;
+    }
+    #pokedexTop {
+        display: inline-block;
+    }
+    .pokedex {
+        min-height: 300px;
+        max-height: 600px;
+        height: 70%;
+        width: 450px;
+        float: right;
+        position: static;
+    }
+    #selectors {
+        border: 2px solid #ffb84b;
+        width: 450px;
+        position: static;
+        display: inline-block;
+        margin: 2% 0% 8% 15%;
+    }
 }
 
 /* MOBILE */

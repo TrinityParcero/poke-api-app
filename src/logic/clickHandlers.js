@@ -23,7 +23,13 @@ import {
  */
 export const pokeSlideClick = async (pokemon) => {
     try {
-        const dexSpace = document.querySelector('#pokedex');
+        const topDex = document.querySelector('#pokedexTop');
+        const topDexStyle = window.getComputedStyle(topDex, null).display;
+        const bottomDex = document.querySelector('#pokedexBottom');
+        let displaySpace = bottomDex;
+        if (topDexStyle !== 'none') {
+            displaySpace = topDex;
+        }
 
         const name = pokemon.name;
         const types = pokemon.types;
@@ -33,7 +39,7 @@ export const pokeSlideClick = async (pokemon) => {
 
         // display a loading message
         const loadingDisplay = <LoadText value={name} dataType='pokemon' />
-        ReactDOM.render(loadingDisplay, dexSpace);
+        ReactDOM.render(loadingDisplay, displaySpace);
 
         // the pokeAPI is a little weird - pokemon data is split between a few endpoints
         const additionalData = await getPokedexData(name);
@@ -55,7 +61,7 @@ export const pokeSlideClick = async (pokemon) => {
 
         const dexEntry = <DexEntry pokemonData={fullDexData} />
 
-        ReactDOM.render(dexEntry, dexSpace);
+        ReactDOM.render(dexEntry, displaySpace);
         return;
 
     } catch (error) {
@@ -72,12 +78,19 @@ export const pokeSlideClick = async (pokemon) => {
 export const genButtonClick = async () => {
     try {
         const resultSpace = document.querySelector('#carousel');
-        const pokedexSpace = document.querySelector('#pokedex');
         const typeInputs = document.querySelectorAll('input[name=type]');
+
+        const topDex = document.querySelector('#pokedexTop');
+        const topDexStyle = window.getComputedStyle(topDex, null).display;
+        const bottomDex = document.querySelector('#pokedexBottom');
+        let displaySpace = bottomDex;
+        if (topDexStyle !== 'none') {
+            displaySpace = topDex;
+        }
 
         // display a loading message
         const loadingDisplay = <LoadText value={''} dataType='' />
-        ReactDOM.render(loadingDisplay, pokedexSpace);
+        ReactDOM.render(loadingDisplay, displaySpace);
 
         // clear old pokemon from carousel
         ReactDOM.render('', resultSpace);
@@ -108,7 +121,7 @@ export const genButtonClick = async () => {
         }
 
         // replace loading text with results message
-        ReactDOM.render(loadedMessage, pokedexSpace);
+        ReactDOM.render(loadedMessage, displaySpace);
         console.log(`Found ${resultData.length} pokemon`);
 
         const carousel = <PokeCarousel slides={resultData} />

@@ -10,7 +10,7 @@ class ErrorText extends React.Component{
     render(){
         return(
             <div className="loadText">
-                <img src="..\images\uhoh.gif" alt="confused raichu gif" height='150px'/>
+                <img id="errorImage" src="..\images\uhoh.gif" alt="confused raichu gif" height='150px'/>
                 <h3>Something went wrong! Sorry about that!</h3>
                 <p>{`${this.notes}`}</p>
             </div>
