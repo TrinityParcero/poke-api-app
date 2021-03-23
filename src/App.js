@@ -25,6 +25,7 @@ class App extends React.Component {
                         <div id="pokedexTop" className="pokedex">
                             <p className='loadText'>Pick a type, then click the 'get pokemon' button!</p>
                         </div>
+                        <div id="topCarousel" class="carousel"></div>
                         <div id="selectors">
                             <SelectorFieldset category="type" values={PokeData.types} inputType="radio" />
                             <button id="genButton" onClick={genButtonClick}>get pokemon</button>
@@ -33,7 +34,7 @@ class App extends React.Component {
                     <div id="pokedexBottom" className="pokedex">
                         <p className='loadText'>Pick a type, then click the 'get pokemon' button!</p>
                     </div>
-                    <div id="carousel"></div>
+                    <div id="bottomCarousel" class="carousel"></div>
                 </main>
                 <footer>
                     <p>Trinity Parcero 2021 | PokéAPI created by Paul Hallett | Pokemon® Nintendo</p>
