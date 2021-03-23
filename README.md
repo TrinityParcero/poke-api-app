@@ -8,8 +8,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
--   **in progress** add css handling for smaller screens
--   finalize styles - add diagonals
+-   **up next** finalize styles - add diagonals
 -   filter by color, generation, second type
 -   change colors on pokedex display based on pokemon type
 -   add text search which includes prefix and fuzzy matching for pokemon names
@@ -29,7 +28,6 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 **Visual/Style issues**
 
 -   Pokemon with complex evolution chains - Eeveelutions are a good example - display of the evolution chain gets messy
--   UI doesn't fit properly on small screens - needs CSS work
 
 # Design Sketch / Inspiration
 

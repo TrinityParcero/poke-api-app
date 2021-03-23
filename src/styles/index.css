@@ -216,11 +216,14 @@ h2 {
 }
 
 /* CAROUSEL */
-#carousel {
+.carousel {
     display: block;
     text-align: center;
     margin-bottom: 3%;
     position: relative;
+}
+#topCarousel {
+    display: none;
 }
 .icon-example {
     font-size: 3em;
@@ -243,7 +246,7 @@ h2 {
     border-radius: 25%;
     text-align: center;
 }
-#carousel .backCircle {
+.carousel .backCircle {
     position: static;
     width: 105px;
     height: 105px;
@@ -288,58 +291,181 @@ button:hover {
 }
 
 /* SMALL DESKTOP */
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1350px) {
     body {
         height: 100%;
-    }
-    main {
-        width: 90%;
-    }
-    #selectors {
-        margin: 100px 0% 8% 10%;
     }
 }
 
 /* TABLET */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1150px) {
     body {
         height: 100%;
     }
     main {
         width: 100%;
     }
+    #leftChunk {
+        width: 100%;
+        margin-bottom: 6%;
+    }
     #pokedexBottom {
         display: none;
     }
     #pokedexTop {
-        display: inline-block;
+        display: block;
     }
     .pokedex {
         min-height: 300px;
         max-height: 600px;
         height: 70%;
-        width: 450px;
-        float: right;
-        position: static;
     }
     #selectors {
         border: 2px solid #ffb84b;
-        width: 450px;
+        width: 300px;
         position: static;
-        display: inline-block;
-        margin: 2% 0% 8% 15%;
+        margin-top: 12%;
+        margin-left: 10%;
+    }
+    .carousel {
+        margin: 0px 20px;
     }
 }
 
-/* MOBILE */
-@media screen and (max-width: 550px) {
+/* SMALL TABLET OR BIG MOBILE I GUESS */
+@media screen and (max-width: 950px) {
+    body {
+        border: none;
+    }
+    #leftChunk {
+        all: unset;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10%;
+    }
     h1 {
         font-size: 2.5em;
+        margin: 0 auto;
+        padding: 30px 0px 10px 0px;
+        width: 100vw;
+        text-align: center;
+        vertical-align: middle;
+    }
+    #homeLink,
+    #aboutLink {
+        font-size: 1.8em;
+        background-color: transparent;
+        top: 0;
+    }
+    #aboutLink {
+        right: 0;
     }
     header {
         margin: 2%;
     }
-    #name {
-        font-size: 0.8em;
+    .pokedex,
+    #selectors {
+        all: unset;
+    }
+    #selectors {
+        width: 90%;
+        height: 450px;
+        margin: 0 auto;
+        position: static;
+        display: block;
+        margin-bottom: 10%;
+    }
+    .pokedex {
+        height: 70%;
+        width: 100%;
+        margin-left: 0;
+        max-height: 600px;
+        min-height: 500px;
+        margin-top: 50px;
+        display: block;
+        position: static;
+        margin-bottom: 5%;
+    }
+    .pokedex .backCircle {
+        left: 20%;
+        height: 200px;
+    }
+    #dexImage {
+        margin-top: 4%;
+    }
+    #dexImage img {
+        left: 20%;
+    }
+    #dexText {
+        display: block;
+    }
+    #dexImage {
+        height: 250px;
+    }
+    #dexSidebar {
+        padding: unset;
+        padding-left: 5px;
+    }
+    h2 {
+        font-size: 2em;
+        float: left;
+        left: 0;
+    }
+    #topCarousel {
+        display: block;
+        margin-bottom: 5%;
+    }
+    #bottomCarousel {
+        display: none;
+    }
+}
+/* PROPER MOBILE */
+@media screen and (max-width: 750px) {
+    #leftChunk {
+        margin-top: 15%;
+    }
+    #evolutionChain {
+        left: unset;
+    }
+    #dexText,
+    #evolutionChain {
+        margin-left: 4%;
+    }
+}
+/* ITSY BITSY */
+@media screen and (max-width: 450px) {
+    #leftChunk {
+        margin-top: 20%;
+    }
+    #evolutionChain {
+        display: none;
+    }
+    #dexText,
+    #dexImage {
+        margin-left: 4%;
+    }
+    #dexSidebar {
+        padding-top: 20%;
+        width: unset;
+        height: unset;
+        padding-right: 4%;
+    }
+    .pokedex {
+        margin-bottom: 0;
+    }
+    #dexImage {
+        width: unset;
+        margin-top: 10%;
+    }
+    #dexText {
+        width: 50%;
+        margin-top: 2%;
+    }
+    #dexImage img {
+        height: 200px;
+    }
+    #dexImage .backCircle {
+        height: 150px;
+        width: 150px;
     }
 }

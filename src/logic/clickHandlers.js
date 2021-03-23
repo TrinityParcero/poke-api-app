@@ -77,9 +77,14 @@ export const pokeSlideClick = async (pokemon) => {
  */
 export const genButtonClick = async () => {
     try {
-        const resultSpace = document.querySelector('#carousel');
-        const typeInputs = document.querySelectorAll('input[name=type]');
-
+        // figure out which carousel and dex space is active - based on screen size
+        const topCarousel = document.querySelector('#topCarousel');
+        const bottomCarousel = document.querySelector('#bottomCarousel');
+        const topCarouselStyle = window.getComputedStyle(topCarousel, null).display;
+        let resultSpace = bottomCarousel;
+        if (topCarouselStyle !== 'none') {
+            resultSpace = topCarousel;
+        }
         const topDex = document.querySelector('#pokedexTop');
         const topDexStyle = window.getComputedStyle(topDex, null).display;
         const bottomDex = document.querySelector('#pokedexBottom');
@@ -87,6 +92,8 @@ export const genButtonClick = async () => {
         if (topDexStyle !== 'none') {
             displaySpace = topDex;
         }
+
+        const typeInputs = document.querySelectorAll('input[name=type]');
 
         // display a loading message
         const loadingDisplay = <LoadText value={''} dataType='' />
