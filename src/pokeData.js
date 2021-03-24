@@ -20,7 +20,19 @@ export const PokeData = {
         'fairy'
     ],
     generations: [
-        1, 2, 3, 4, 5, 6, 7, 8
+        '1', '2', '3', '4', '5', '6', '7', '8'
+    ],
+    colors: [
+        'black',
+        'blue',
+        'brown',
+        'gray',
+        'green',
+        'pink',
+        'purple',
+        'red',
+        'white',
+        'yellow'
     ],
     hyphenatedNames: [
         "ho-oh",

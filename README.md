@@ -8,8 +8,8 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
--   **up next** finalize styles - add diagonals
--   filter by color, generation, second type
+-   **in progress** filter by color, generation, second type
+-   add hover effect (color change and alt text) to home and about links
 -   change colors on pokedex display based on pokemon type
 -   add text search which includes prefix and fuzzy matching for pokemon names
 -   fix react warnings in console, fix accessibility warnings

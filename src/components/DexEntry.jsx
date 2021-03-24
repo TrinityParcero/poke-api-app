@@ -138,11 +138,11 @@ class PokedexEntry extends React.Component{
                 <h2>{`#${this.pokemonData.number} ${this.pokemonData.name.toUpperCase()}`}</h2>
                 <div id="dexSidebar">
                     <h3>GENUS</h3>
-                    <p>{this.pokemonData.genus}</p>
+                    <p>{this.pokemonData.genus}</p> <br/>
                     <h3>COLOR</h3>
-                    <p>{this.pokemonData.color}</p>
+                    <p>{this.pokemonData.color}</p> <br/>
                     <h3>GENERATION</h3>
-                    <p>{this.pokemonData.generation}</p>
+                    <p>{this.pokemonData.generation}</p> <br/>
                     <h3>TYPES</h3>
                     <p>{typeDisplay}</p>
                 </div>
