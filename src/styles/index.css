@@ -3,7 +3,7 @@ h1 {
     display: inline-block;
     position: absolute;
     background-color: #d32d11;
-    padding: 40px 20px 20px 20px;
+    padding: 50px 8% 50px 15%;
     color: #ffb84b;
     font-family: 'Truculenta', sans-serif;
     font-weight: 700;
@@ -11,20 +11,34 @@ h1 {
     top: -20px;
     line-height: 1em;
     font-size: 3em;
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
 }
 #homeLink {
     font-size: 2.5em;
-    display: inline-block;
+    display: block;
     position: absolute;
-    top: 100px;
+    top: 120px;
+    padding-left: 2%;
+    padding-right: 200px;
     background-color: #d32d11;
 }
 #aboutLink {
     font-size: 2.5em;
-    display: inline-block;
+    display: block;
     position: absolute;
-    top: 200px;
+    top: 220px;
+    padding: 50px 500px 100px 2%;
     background-color: #d32d11;
+    clip-path: polygon(0% 0%, 100% 0%, 100% -120%, 0% 100%);
+}
+.linkLabel {
+    font-size: 0.4em;
+    margin-bottom: 0;
+    color: white;
+}
+#homeIcon,
+#aboutIcon {
+    margin: 0;
 }
 
 /* MISC */
@@ -47,7 +61,7 @@ main {
     position: relative;
     width: 40%;
     height: 520px;
-    margin-bottom: 2%;
+    margin-bottom: 8%;
 }
 a {
     text-decoration: none;
@@ -66,19 +80,32 @@ a {
 }
 
 /* SELECTORS */
-#type {
+.type,
+.gen,
+.color {
     padding: 10px 20px;
     float: left;
     font-size: 0.8em;
     border: 1px solid #ffb84b;
     margin: 10px;
 }
+.pairedSelectAndLabel {
+    padding: 2%;
+}
+select {
+    display: block;
+}
 #selectors {
     display: inline-block;
     top: 100px;
-    left: 50px;
-    margin: 0% 0% 2% 8%;
+    left: 12%;
+    margin: 0% 0% 8% 8%;
+    padding: 2%;
+    width: 500px;
+    height: 550px;
     position: absolute;
+    background-color: white;
+    border: 1px solid #d32d11;
 }
 legend {
     font-size: 1.2em;
@@ -137,7 +164,7 @@ h2 {
     width: 300px;
     display: inline;
     text-align: right;
-    padding: 25px 50px 5px 0px;
+    padding: 25px 50px 50px 0px;
     color: #ffb84b;
     position: absolute;
     right: 0px;
@@ -145,6 +172,8 @@ h2 {
     font-size: 2.5em;
     z-index: 1;
     font-family: 'Truculenta', sans-serif;
+    /* transform: skewX(-10deg); */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 50%);
 }
 .backCircle {
     background-color: #251a66;
@@ -166,9 +195,10 @@ h2 {
     width: 150px;
     height: 436px;
     right: 0px;
-    padding: 80px 10px 10px 10px;
+    padding: 100px 10px 10px 10px;
     z-index: 0;
     display: inline-block;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 90%);
 }
 #dexSidebar p {
     color: white;
@@ -219,7 +249,7 @@ h2 {
 .carousel {
     display: block;
     text-align: center;
-    margin-bottom: 3%;
+    margin: 2% 5% 2% 5%;
     position: relative;
 }
 #topCarousel {
@@ -277,14 +307,20 @@ footer p {
 button {
     background-color: #d32d11;
     color: white;
-    padding: 5px;
-    text-align: center;
+    padding: 20px;
+    font-size: 2em;
+    font-family: 'Truculenta', sans-serif;
+    text-align: left;
     border: none;
+    clip-path: polygon(0% 0%, 100% 40%, 100% 70%, 0% 100%);
 }
 #genButton {
-    height: 50px;
-    width: 100px;
+    height: 100px;
+    width: 285px;
     display: block;
+    position: relative;
+    bottom: 50px;
+    left: 10px;
 }
 button:hover {
     background-color: #6bafc9;
