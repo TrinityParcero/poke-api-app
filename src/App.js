@@ -9,6 +9,14 @@ class App extends React.Component {
     render() {
         return (
             <div>
+                {/* 
+                    these divs are for creating the page border - a border
+                    around the body element itself gets weird with changing page size
+                */}
+                <div id="left"></div>
+                <div id="right"></div>
+                <div id="top"></div>
+
                 <h1>POKÉ(API)DEX</h1>
                 <div id="homeLink">
                     <p class="linkLabel">portfolio</p>
