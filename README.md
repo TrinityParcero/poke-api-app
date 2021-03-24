@@ -27,6 +27,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 **Visual/Style issues**
 
+-   The border around the page is going to make me insane. It works and doesn't work in a pattern I have yet to figure out
 -   Pokemon with complex evolution chains - Eeveelutions are a good example - display of the evolution chain gets messy
 
 # Design Sketch / Inspiration
