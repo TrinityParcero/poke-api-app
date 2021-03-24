@@ -8,6 +8,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
+-   **FIX** - pathclipping cuts off the type display on pokedex in larger screen sizes
 -   **in progress** filter by color, generation, second type
 -   add hover effect (color change and alt text) to home and about links
 -   change colors on pokedex display based on pokemon type
