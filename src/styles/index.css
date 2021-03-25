@@ -3,7 +3,7 @@ h1 {
     display: inline-block;
     position: absolute;
     background-color: #d32d11;
-    padding: 50px 8% 50px 15%;
+    padding: 2% 8% 50px 15%;
     color: #ffb84b;
     font-family: 'Truculenta', sans-serif;
     font-weight: 700;
@@ -17,7 +17,7 @@ h1 {
     font-size: 2.5em;
     display: block;
     position: absolute;
-    top: 120px;
+    top: 100px;
     padding-left: 2%;
     padding-right: 200px;
     background-color: #d32d11;
@@ -26,7 +26,7 @@ h1 {
     font-size: 2.5em;
     display: block;
     position: absolute;
-    top: 220px;
+    top: 200px;
     padding: 50px 500px 100px 2%;
     background-color: #d32d11;
     clip-path: polygon(0% 0%, 100% 0%, 100% -120%, 0% 100%);
@@ -44,9 +44,36 @@ h1 {
 /* MISC */
 body {
     font-family: 'Noto Sans JP', sans-serif;
-    border: 12px solid #d32d11;
     margin: 0px;
     height: 100%;
+}
+#top,
+#left,
+#right {
+    background: #d32d11;
+}
+#left,
+#right {
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    position: fixed;
+}
+#left {
+    left: 0;
+}
+#right {
+    right: 0;
+}
+
+#top {
+    left: 0;
+    right: 0;
+    position: absolute;
+    height: 15px;
+}
+#top {
+    top: 0;
 }
 main {
     max-width: 1500px;
@@ -58,7 +85,7 @@ main {
     position: relative;
     width: 40%;
     height: 520px;
-    margin-bottom: 8%;
+    margin-bottom: 2%;
 }
 a {
     text-decoration: none;
@@ -94,15 +121,15 @@ select {
 }
 #selectors {
     display: inline-block;
-    top: 100px;
+    top: 12%;
     left: 12%;
-    margin: 0% 0% 8% 8%;
-    padding: 2%;
-    width: 500px;
-    height: 550px;
-    position: absolute;
+    margin: 0% 0% 0% 8%;
+    padding: 1%;
+    width: 450px;
+    height: 480px;
+    position: relative;
     background-color: white;
-    border: 1px solid #d32d11;
+    border: 2px solid #ffb84b;
 }
 legend {
     font-size: 1.2em;
@@ -120,7 +147,6 @@ label {
     width: 550px;
     position: relative;
     float: right;
-    margin-bottom: 2%;
 }
 #pokedexTop {
     display: none;
@@ -130,6 +156,7 @@ label {
     position: relative;
     height: 300px;
     width: 300px;
+    bottom: 40px;
 }
 #dexImage img {
     height: 100%;
@@ -152,7 +179,7 @@ label {
 #dexText {
     display: inline-block;
     position: relative;
-    margin: 50px 10px 10px 50px;
+    margin: 20px 10px 10px 50px;
     width: 300px;
     line-height: 1.1em;
 }
@@ -161,7 +188,7 @@ h2 {
     width: 300px;
     display: inline;
     text-align: right;
-    padding: 25px 50px 50px 0px;
+    padding: 2% 50px 50px 0px;
     color: #ffb84b;
     position: absolute;
     right: 0px;
@@ -169,7 +196,6 @@ h2 {
     font-size: 2.5em;
     z-index: 1;
     font-family: 'Truculenta', sans-serif;
-    /* transform: skewX(-10deg); */
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 50%);
 }
 .backCircle {
@@ -190,8 +216,9 @@ h2 {
     background-color: #d32d11;
     position: absolute;
     width: 150px;
-    height: 436px;
+    height: 455px;
     right: 0px;
+    line-height: 1em;
     padding: 100px 10px 10px 10px;
     z-index: 0;
     display: inline-block;
@@ -204,7 +231,6 @@ h2 {
     width: 300px;
     display: inline-block;
     position: relative;
-    margin-bottom: 2%;
     left: 50px;
 }
 .evoBase,
@@ -246,7 +272,7 @@ h2 {
 .carousel {
     display: block;
     text-align: center;
-    margin: 2% 5% 2% 5%;
+    margin: 0% 5% 2% 5%;
     position: relative;
 }
 #topCarousel {
@@ -305,18 +331,18 @@ button {
     background-color: #d32d11;
     color: white;
     padding: 20px;
-    font-size: 2em;
+    font-size: 1.6em;
+    line-height: 0.2em;
     font-family: 'Truculenta', sans-serif;
     text-align: left;
     border: none;
-    clip-path: polygon(0% 0%, 100% 40%, 100% 70%, 0% 100%);
 }
 #genButton {
-    height: 100px;
-    width: 285px;
+    height: 45px;
+    width: 282px;
     display: block;
     position: relative;
-    bottom: 50px;
+    bottom: 55px;
     left: 10px;
 }
 button:hover {
@@ -335,8 +361,12 @@ button:hover {
     body {
         height: 100%;
     }
+    .loadText {
+        margin-right: 4%;
+    }
     h1 {
         padding-right: 10%;
+        padding-top: 4%;
     }
     #genButton {
         margin-top: 50px;
@@ -359,7 +389,7 @@ button:hover {
         width: 520px;
     }
     #dexText {
-        margin: 50px 20px 10px 20px;
+        margin: 10px 20px 10px 20px;
     }
     #selectors {
         border: 2px solid #ffb84b;
@@ -373,14 +403,17 @@ button:hover {
         font-size: 1.1em;
     }
     .carousel {
-        margin: 100px 20px 50px 20px;
+        margin: 50px 20px 50px 20px;
     }
 }
 
 /* SMALL TABLET OR BIG MOBILE I GUESS */
 @media screen and (max-width: 950px) {
-    body {
-        border: none;
+    #top,
+    #bottom,
+    #left,
+    #right {
+        display: none;
     }
     #leftChunk {
         all: unset;
@@ -430,8 +463,8 @@ button:hover {
     }
     #genButton {
         width: 200px;
-        clip-path: polygon(0% 35%, 100% 0%, 100% 100%, 0% 70%);
-        margin-left: 100px;
+        position: static;
+        margin-top: 20px;
     }
     .pokedex {
         height: 70%;
@@ -449,7 +482,7 @@ button:hover {
         height: 200px;
     }
     #dexImage {
-        margin-top: 4%;
+        margin-top: 6%;
     }
     #dexImage img {
         left: 20%;
@@ -470,6 +503,7 @@ button:hover {
         font-size: 2em;
         float: left;
         left: 0;
+        line-height: 1.8em;
         clip-path: polygon(0% 30%, 100% 0%, 90% 70%, 0% 100%);
     }
     #topCarousel {
@@ -542,7 +576,7 @@ button:hover {
         padding-top: 20px;
         clip-path: polygon(10% 10%, 100% 0%, 90% 90%, 0% 100%);
         width: 350px;
-        height: 280px;
+        height: 200px;
         position: relative;
         top: 350px;
         right: unset;
@@ -555,20 +589,20 @@ button:hover {
         height: 120px;
         margin-top: 10%;
         position: relative;
-        bottom: 270px;
+        bottom: 190px;
         left: 80px;
     }
     #dexText {
         width: 80%;
         position: relative;
-        top: 220px;
+        top: 275px;
         margin-top: 2%;
     }
     #evolutionChain {
-        top: 50px;
+        top: 100px;
     }
     .carousel {
-        top: 200px;
+        top: 220px;
     }
     #dexSidebar p,
     #dexSidebar h3 {

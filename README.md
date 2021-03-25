@@ -8,7 +8,6 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
--   **FIX** - pathclipping cuts off the type display on pokedex in larger screen sizes
 -   **in progress** filter by color, generation, second type
 -   add hover effect (color change and alt text) to home and about links
 -   change colors on pokedex display based on pokemon type
@@ -28,7 +27,6 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 **Visual/Style issues**
 
--   The border around the page is going to make me insane. It works and doesn't work in a pattern I have yet to figure out
 -   Pokemon with complex evolution chains - Eeveelutions are a good example - display of the evolution chain gets messy
 
 # Design Sketch / Inspiration
