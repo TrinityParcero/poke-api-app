@@ -77,12 +77,13 @@ export const getBasicPokemonData = async (pokemon) => {
             console.log(`Couldn't find official art for ${pokemonAPIResponse.name} :(`);
         }
     }
+    const typesMapped = pokemonAPIResponse.types.map(type => type.type.name);
 
     return {
         name: pokemonAPIResponse.name,
         sprite: pokemonAPIResponse.sprites.front_default,
         art: officialArt,
-        types: pokemonAPIResponse.types
+        types: typesMapped
     };
 };
 
@@ -106,6 +107,7 @@ export const getPokedexData = async (pokemon) => {
     const dexEntry = (speciesAPIResponse.flavor_text_entries.filter(textObject => textObject.language.name === 'en'))[0].flavor_text;
 
     const finalData = {
+        name: speciesAPIResponse.name,
         number: speciesAPIResponse.order,
         color: speciesAPIResponse.color.name,
         evolutionChainUrl: speciesAPIResponse.evolution_chain.url,

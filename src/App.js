@@ -37,7 +37,7 @@ class App extends React.Component {
                     <div id="topCarousel" class="carousel"></div>
                     <div id="selectors">
                         <SelectorFieldset name="type" category="type" values={PokeData.types} inputType="radio" />
-                        <SelectorFieldset name="secondary type" category="type" values={PokeData.types} inputType="radio" />
+                        <SelectorFieldset name="secondaryType" category="type" values={PokeData.types} inputType="radio" />
                         <SelectorFieldset name="generation" category="gen" values={PokeData.generations} inputType="checkbox" />
                         <SelectorFieldset name="color" category="color" values={PokeData.colors} inputType="checkbox" />
                         <button id="genButton" onClick={genButtonClick}>GET POKÉMON</button>

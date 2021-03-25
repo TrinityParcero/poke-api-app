@@ -93,7 +93,16 @@ export const genButtonClick = async () => {
             displaySpace = topDex;
         }
 
-        const typeInputs = document.querySelectorAll('input[name=type]');
+        // get inputs
+        const typeInput = Array.from(document.querySelectorAll('input[name=type]'));
+        const secondaryTypeInput = Array.from(document.querySelectorAll('input[name=secondaryType]'));
+        const colorInput = Array.from(document.querySelectorAll('input[name=color]'));
+        const genInput = Array.from(document.querySelectorAll('input[name=generation]'));
+
+        const selectedType = typeInput.filter(input => input.checked);
+        const selectedSecondary = secondaryTypeInput.filter(input => input.checked);
+        const selectedColors = colorInput.filter(input => input.checked);
+        const selectedGens = genInput.filter(input => input.checked);
 
         // display a loading message
         const loadingDisplay = <LoadText value={''} dataType='' />
@@ -102,36 +111,67 @@ export const genButtonClick = async () => {
         // clear old pokemon from carousel
         ReactDOM.render('', resultSpace);
 
-        const getPokesByTypePromises = [];
-        for (const input of typeInputs) {
-            if (input.checked) {
-                getPokesByTypePromises.push(getPokeByType(input.value));
+        let resultPokemon;
+        // find an input with selection, get dataset then filter based on other inputs
+        if (selectedType.length > 0) {
+            console.log(`Selected type: ${selectedType[0].value}`);
+            resultPokemon = await getPokeByType(selectedType[0].value);
+            if (selectedSecondary.length > 0) {
+                console.log(`Selected secondary type: ${selectedSecondary[0].value}`);
+                console.log(resultPokemon);
+                resultPokemon = resultPokemon.filter(pokemon => pokemon.types.includes(selectedSecondary[0].value));
+            }
+            // for these ones we have to get pokedex data - color and gen are not included in basic api response
+            if (selectedColors.length > 0 || selectedGens.length > 0) {
+                const pokeDataPromises = [];
+                for (const pokemon of resultPokemon) {
+                    pokeDataPromises.push(getPokedexData(pokemon));
+                }
+                const resultPokesFiltered = await Promise.all(pokeDataPromises);
+
+                if (selectedColors.length > 0) {
+                    const colorValues = selectedColors.map(input => input.value);
+                    resultPokesFiltered.filter(pokemon => colorValues.includes(pokemon.color));
+                }
+                if (selectedGens.length > 0) {
+                    const genValues = selectedGens.map(input => input.value);
+                    resultPokesFiltered.filter(pokemon => genValues.includes(pokemon.generation));
+                }
+                // filter resultPokemon to only contain resultPokesFiltered pokemon
+                const finalNameList = resultPokesFiltered.map(pokemon => pokemon.name);
+                resultPokemon.filter(pokemon => finalNameList.includes(pokemon.name));
             }
         }
+        else if (selectedColors.length > 0) {
 
-        // user hadn't selected anything - return
-        if (getPokesByTypePromises.length === 0) {
-            console.log('Try selecting something first!');
+        }
+        else if (selectedGens.length > 0) {
+
+        }
+        else {
+            // user didn't make any selections, return
+            console.log('You have to click something first, pal');
+            const userFailDisplay = <h3>Try selecting a type first!</h3>;
+            ReactDOM.render(userFailDisplay, displaySpace);
             return;
         }
 
-        const resultData = (await Promise.all(getPokesByTypePromises))[0];
 
         let loadedMessage;
 
         // if we got no results, warn the user that somethings up
-        if (resultData.length < 1) {
+        if (resultPokemon.length < 1) {
             loadedMessage = <h3 className='loadText'>Uh oh! No results for those selections.</h3>;
         }
         else {
-            loadedMessage = <h3 className='loadText'>{`Found ${resultData.length} pokemon!`}</h3>
+            loadedMessage = <h3 className='loadText'>{`Found ${resultPokemon.length} pokemon!`}</h3>
         }
 
         // replace loading text with results message
         ReactDOM.render(loadedMessage, displaySpace);
-        console.log(`Found ${resultData.length} pokemon`);
+        console.log(`Found ${resultPokemon.length} pokemon`);
 
-        const carousel = <PokeCarousel slides={resultData} />
+        const carousel = <PokeCarousel slides={resultPokemon} />
 
         ReactDOM.render(
             carousel,
