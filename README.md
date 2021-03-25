@@ -8,8 +8,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 
 # Planned Improvements
 
--   **in progress** filter by color, generation, second type
--   add hover effect (color change and alt text) to home and about links
+-   **up next** add hover effect (color change and alt text) to home and about links
 -   change colors on pokedex display based on pokemon type
 -   fix react warnings in console, fix accessibility warnings
 -   add special style handling for non-standard evolution chains

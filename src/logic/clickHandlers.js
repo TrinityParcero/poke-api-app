@@ -8,6 +8,8 @@ import { LoadText } from '../components/displayText';
 import { displayErrorMessage } from './errorHandlers';
 import {
     getPokeByType,
+    getPokeByColor,
+    getPokeByGen,
     getPokedexData,
     getEvolutionChain
 } from './pokeLogic';
@@ -138,10 +140,40 @@ export const genButtonClick = async () => {
             }
         }
         else if (selectedColors.length > 0) {
+            const colorValues = selectedColors.map(input => input.value);
+            console.log(`Selected colors: ${colorValues}`);
+            const pokeDataPromises = [];
+            for (const value of colorValues) {
+                pokeDataPromises.push(getPokeByColor(value));
+            }
+            const promiseResults = await Promise.all(pokeDataPromises);
+            resultPokemon = promiseResults.flat();
 
+            // filter by gen if applicable, requires pokedex data
+            if (selectedGens.length > 0) {
+                const dexDataPromises = [];
+                for (const pokemon of resultPokemon) {
+                    dexDataPromises.push(getPokedexData(pokemon.name));
+                }
+                let resultPokesFiltered = await Promise.all(dexDataPromises);
+                const genValues = selectedGens.map(input => input.value);
+                console.log(`Selected gens: ${genValues}`);
+                resultPokesFiltered = resultPokesFiltered.filter(pokemon => genValues.includes(pokemon.generation));
+
+                // filter resultPokemon to only contain resultPokesFiltered pokemon
+                const finalNameList = resultPokesFiltered.map(pokemon => pokemon.name);
+                resultPokemon = resultPokemon.filter(pokemon => finalNameList.includes(pokemon.name));
+            }
         }
         else if (selectedGens.length > 0) {
-
+            const genValues = selectedGens.map(input => input.value);
+            console.log(`Selected colors: ${genValues}`);
+            const pokeDataPromises = [];
+            for (const value of genValues) {
+                pokeDataPromises.push(getPokeByGen(value));
+            }
+            const promiseResults = await Promise.all(pokeDataPromises);
+            resultPokemon = promiseResults.flat();
         }
         else {
             // user didn't make any selections, return
@@ -151,9 +183,7 @@ export const genButtonClick = async () => {
             return;
         }
 
-
         let loadedMessage;
-
         // if we got no results, warn the user that somethings up
         if (resultPokemon.length < 1) {
             loadedMessage = <h3 className='loadText'>Uh oh! No results for those selections.</h3>;

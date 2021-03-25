@@ -5,6 +5,9 @@ import { PokeData } from '../pokeData';
 const BasePokeAPIURL = 'https://pokeapi.co/api/v2';
 const HyphenatedNames = PokeData.hyphenatedNames;
 
+// TODO: currently a fair amount of redundant logic between getPoke functions - 
+// can be broken down into smaller, reusable funcs
+
 /**
  * Get Pokemon by Type. makes a request to pokeAPI to get pokemon of type <type>
  * 
@@ -37,6 +40,88 @@ export const getPokeByType = async (type) => {
         pokeDataPromises.push(getBasicPokemonData(pokemon.pokemon.name));
     }
 
+    const finishedPromises = await Promise.allSettled(pokeDataPromises);
+
+    const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
+    if (promiseErrors.length > 0) {
+        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors. Reason: ${promiseErrors[0].reason}`);
+    }
+    const fullPokemonData = finishedPromises.map(promise =>
+        promise.value
+    ).filter(value => value !== undefined);
+
+    // remove special cases with no sprites - special forms, etc.
+    const filteredPokemonData = fullPokemonData.filter(pokemon => pokemon.sprite !== null);
+    return filteredPokemonData;
+};
+
+/**
+ * 
+ * @param {string} color name of color to search for
+ * @returns {array} array of all pokemon of color <color>
+ */
+export const getPokeByColor = async (color) => {
+    const pokeColorURL = `${BasePokeAPIURL}/pokemon-color/${color}`;
+    const response = await request
+        .get(pokeColorURL)
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
+        .accept('application/json');
+
+    const responsePokes = response.body.pokemon_species;
+
+    // remove mega evolutions and special forms
+    // TODO: fix whatever makes them break when clicked and re-add them to result set
+    const pokeOfColor = responsePokes.filter(pokemon =>
+        (!pokemon.name.includes('-')) || (HyphenatedNames.includes(pokemon.name))
+    );
+
+    // get data for each of those pokemon
+    const pokeDataPromises = [];
+    for (const pokemon of pokeOfColor) {
+        pokeDataPromises.push(getBasicPokemonData(pokemon.name));
+    }
+    const finishedPromises = await Promise.allSettled(pokeDataPromises);
+
+    const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
+    if (promiseErrors.length > 0) {
+        console.log(`WARNING: ${promiseErrors.length} requests failed due to errors. Reason: ${promiseErrors[0].reason}`);
+    }
+    const fullPokemonData = finishedPromises.map(promise =>
+        promise.value
+    ).filter(value => value !== undefined);
+
+    // remove special cases with no sprites - special forms, etc.
+    const filteredPokemonData = fullPokemonData.filter(pokemon => pokemon.sprite !== null);
+    return filteredPokemonData;
+};
+
+/**
+ *
+ * @param {string} gen generation number
+ * @returns {array} array of all pokemon of generation <gen> 
+ */
+export const getPokeByGen = async (gen) => {
+    const pokeGenURL = `${BasePokeAPIURL}/generation/${gen}`;
+    const response = await request
+        .get(pokeGenURL)
+        .set('Cache-Control', 'public')
+        .set('Cache-Control', 'max-age=18000')
+        .accept('application/json');
+
+    const responsePokes = response.body.pokemon_species;
+
+    // remove mega evolutions and special forms
+    // TODO: fix whatever makes them break when clicked and re-add them to result set
+    const pokeOfGen = responsePokes.filter(pokemon =>
+        (!pokemon.name.includes('-')) || (HyphenatedNames.includes(pokemon.name))
+    );
+
+    // get data for each of those pokemon
+    const pokeDataPromises = [];
+    for (const pokemon of pokeOfGen) {
+        pokeDataPromises.push(getBasicPokemonData(pokemon.name));
+    }
     const finishedPromises = await Promise.allSettled(pokeDataPromises);
 
     const promiseErrors = finishedPromises.filter(promise => promise.status === "rejected");
