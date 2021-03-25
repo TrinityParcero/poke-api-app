@@ -121,16 +121,16 @@ class PokedexEntry extends React.Component{
 
     render(){
         let typeDisplay = '';
-        if(this.pokemonData.types.length > 1){
-            for(let i = 0; i < this.pokemonData.types.length; i++){
-                typeDisplay +=(this.pokemonData.types[i]);
-                if(this.pokemonData.types[i+1]){
+        if(this.pokemonData.type.length > 1){
+            for(let i = 0; i < this.pokemonData.type.length; i++){
+                typeDisplay +=(this.pokemonData.type[i]);
+                if(this.pokemonData.type[i+1]){
                     typeDisplay += (' | ');
                 }
             }
         }
         else{
-            typeDisplay = this.pokemonData.types[0];
+            typeDisplay = this.pokemonData.type[0];
         }
     
         return(
