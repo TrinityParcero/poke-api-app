@@ -12,8 +12,6 @@ const HyphenatedNames = PokeData.hyphenatedNames;
  * @returns {Array} array of all pokemon of type <type>
  */
 export const getPokeByType = async (type) => {
-    console.log(`Getting pokemon of type ${type}`);
-
     const pokeTypeURL = `${BasePokeAPIURL}/type/${type}`;
     const response = await request
         .get(pokeTypeURL)

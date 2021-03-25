@@ -112,28 +112,29 @@ export const genButtonClick = async () => {
             resultPokemon = await getPokeByType(selectedType[0].value);
             if (selectedSecondary.length > 0) {
                 console.log(`Selected secondary type: ${selectedSecondary[0].value}`);
-                console.log(resultPokemon);
                 resultPokemon = resultPokemon.filter(pokemon => pokemon.type.includes(selectedSecondary[0].value));
             }
             // for these ones we have to get pokedex data - color and gen are not included in basic api response
             if (selectedColors.length > 0 || selectedGens.length > 0) {
                 const pokeDataPromises = [];
                 for (const pokemon of resultPokemon) {
-                    pokeDataPromises.push(getPokedexData(pokemon));
+                    pokeDataPromises.push(getPokedexData(pokemon.name));
                 }
-                const resultPokesFiltered = await Promise.all(pokeDataPromises);
+                let resultPokesFiltered = await Promise.all(pokeDataPromises);
 
                 if (selectedColors.length > 0) {
                     const colorValues = selectedColors.map(input => input.value);
-                    resultPokesFiltered.filter(pokemon => colorValues.includes(pokemon.color));
+                    console.log(`Selected colors: ${colorValues}`);
+                    resultPokesFiltered = resultPokesFiltered.filter(pokemon => colorValues.includes(pokemon.color));
                 }
                 if (selectedGens.length > 0) {
                     const genValues = selectedGens.map(input => input.value);
-                    resultPokesFiltered.filter(pokemon => genValues.includes(pokemon.generation));
+                    console.log(`Selected gens: ${genValues}`);
+                    resultPokesFiltered = resultPokesFiltered.filter(pokemon => genValues.includes(pokemon.generation));
                 }
                 // filter resultPokemon to only contain resultPokesFiltered pokemon
                 const finalNameList = resultPokesFiltered.map(pokemon => pokemon.name);
-                resultPokemon.filter(pokemon => finalNameList.includes(pokemon.name));
+                resultPokemon = resultPokemon.filter(pokemon => finalNameList.includes(pokemon.name));
             }
         }
         else if (selectedColors.length > 0) {
