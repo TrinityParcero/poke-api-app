@@ -16,10 +16,7 @@ import {
  * Pokeslide click. onClick method for each pokemon slide in carousel
  * renders a dexEntry based on <pokemonData>
  * 
- * @param {string} name pokemon name
- * @param {string} art link to pokemon art
- * @param {array} types pokemon types
- * @param {string} sprite link to pokemon sprite
+ * @param {object} pokemon pokemon object containing basic info 
  */
 export const pokeSlideClick = async (pokemon) => {
     try {
@@ -32,7 +29,6 @@ export const pokeSlideClick = async (pokemon) => {
         }
 
         const name = pokemon.name;
-        const types = pokemon.types;
         const art = pokemon.art;
 
         console.log(`You clicked ${name}`);
@@ -45,14 +41,12 @@ export const pokeSlideClick = async (pokemon) => {
         const additionalData = await getPokedexData(name);
         const evolutionChain = await getEvolutionChain(additionalData.evolutionChainUrl, pokemon);
 
-        const typesMapped = types.map(entry => entry.type.name);
-
         const fullDexData = {
             name: name,
             number: additionalData.number,
             art: art,
             text: additionalData.dexEntry,
-            types: typesMapped,
+            type: pokemon.type,
             genus: additionalData.genus,
             generation: additionalData.generation,
             color: additionalData.color,
@@ -119,7 +113,7 @@ export const genButtonClick = async () => {
             if (selectedSecondary.length > 0) {
                 console.log(`Selected secondary type: ${selectedSecondary[0].value}`);
                 console.log(resultPokemon);
-                resultPokemon = resultPokemon.filter(pokemon => pokemon.types.includes(selectedSecondary[0].value));
+                resultPokemon = resultPokemon.filter(pokemon => pokemon.type.includes(selectedSecondary[0].value));
             }
             // for these ones we have to get pokedex data - color and gen are not included in basic api response
             if (selectedColors.length > 0 || selectedGens.length > 0) {

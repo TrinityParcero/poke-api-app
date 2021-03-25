@@ -83,7 +83,7 @@ export const getBasicPokemonData = async (pokemon) => {
         name: pokemonAPIResponse.name,
         sprite: pokemonAPIResponse.sprites.front_default,
         art: officialArt,
-        types: typesMapped
+        type: typesMapped
     };
 };
 
