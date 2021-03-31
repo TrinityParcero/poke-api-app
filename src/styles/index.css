@@ -12,16 +12,23 @@ h1 {
     line-height: 1em;
     font-size: 3em;
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
+    z-index: 3;
+}
+#houseDoor,
+#journalText {
+    color: #ffb84b;
 }
 #homeLink {
     font-size: 2.5em;
     display: block;
     position: absolute;
-    top: 100px;
     padding-left: 2%;
+    top: 100px;
     padding-right: 200px;
     background-color: #d32d11;
+    z-index: 2;
 }
+
 #aboutLink {
     font-size: 2.5em;
     display: block;
@@ -30,6 +37,7 @@ h1 {
     padding: 50px 500px 100px 2%;
     background-color: #d32d11;
     clip-path: polygon(0% 0%, 100% 0%, 100% -120%, 0% 100%);
+    z-index: 2;
 }
 .linkLabel {
     font-size: 0.4em;
@@ -130,6 +138,7 @@ select {
     position: relative;
     background-color: white;
     border: 2px solid #ffb84b;
+    z-index: 3;
 }
 legend {
     font-size: 1.2em;
@@ -395,7 +404,9 @@ button:hover {
         border: 2px solid #ffb84b;
         width: 300px;
         height: fit-content;
-        position: static;
+        position: relative;
+        left: 0;
+        top: 0;
         margin-top: 8%;
         margin-left: 10%;
     }
@@ -429,6 +440,7 @@ button:hover {
         width: 100vw;
         text-align: center;
         vertical-align: middle;
+        z-index: 1;
     }
     #homeLink,
     #aboutLink {

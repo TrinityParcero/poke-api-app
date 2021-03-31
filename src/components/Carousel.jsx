@@ -5,30 +5,10 @@ import PropTypes from 'prop-types';
 
 import '@brainhubeu/react-carousel/lib/style.css';
 
-import {pokeSlideClick } from '../logic/clickHandlers';
+import { pokeSlideClick, swapColor } from '../logic/clickHandlers';
 
 const Red = "#d32d11";
 const Blue = "#251a66";
-
-/**
- * color active. sets color of div with <id> to red
- * 
- * @param {string} id 
- */
-const colorActive = (id) =>{
-    const targetDiv = document.getElementById(id);
-    targetDiv.style.backgroundColor = Red;
-};
-
-/**
- * color inactive. sets color of div with <id> to blue
- * 
- * @param {string} id 
- */
-const colorInactive = (id) =>{
-    const targetDiv = document.getElementById(id);
-    targetDiv.style.backgroundColor = Blue;
-};
 
 class PokeSlide extends React.Component{
     constructor(props){
@@ -40,8 +20,8 @@ class PokeSlide extends React.Component{
         return(
             <div className="slide" onClick={() => pokeSlideClick(this.pokemon)}>
                 <img src={this.pokemon.sprite} alt={`${this.pokemon.name} sprite`} 
-                    onMouseOver={() => colorActive(`${this.pokemon.name}Bg`)} 
-                    onMouseLeave={() => colorInactive(`${this.pokemon.name}Bg`)}
+                    onMouseOver={() => swapColor(`${this.pokemon.name}Bg`, Red, true)} 
+                    onMouseLeave={() => swapColor(`${this.pokemon.name}Bg`, Blue, true)}
                 />
                 <div className="backCircle" id={`${this.pokemon.name}Bg`}></div>
                 <p className="slideOverlay">{this.pokemon.name}</p>

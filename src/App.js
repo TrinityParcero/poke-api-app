@@ -3,7 +3,10 @@ import { HouseDoor, JournalText } from 'react-bootstrap-icons';
 
 import { SelectorFieldset, PairedSelectAndLabel } from './components/InputHelpers';
 import { PokeData } from './pokeData';
-import { genButtonClick } from './logic/clickHandlers';
+import { genButtonClick, swapColor } from './logic/clickHandlers';
+
+const Yellow = "#ffb84b";
+const Blue = "#6bafc9";
 
 class App extends React.Component {
     render() {
@@ -21,13 +24,18 @@ class App extends React.Component {
                 <div id="homeLink">
                     <p class="linkLabel">portfolio</p>
                     <a href="https://trinity-parcero.web.app/" target="_blank" id="homeIcon">
-                        <HouseDoor id="houseDoor" color="#ffb84b" title="to main portfolio page" />
+                        <HouseDoor id="houseDoor" title="to main portfolio page"
+                            onMouseOver={() => swapColor('houseDoor', Blue, false)}
+                            onMouseLeave={() => swapColor('houseDoor', Yellow, false)} />
                     </a>
                 </div>
                 <div id="aboutLink">
                     <p class="linkLabel">github</p>
                     <a href="https://github.com/TrinityParcero/poke-api-app/blob/main/README.md" target="_blank" id="aboutIcon">
-                        <JournalText color="#ffb84b" title="to about page" />
+                        <JournalText id="journalText" title="to about page"
+                            onMouseOver={() => swapColor('journalText', Blue, false)}
+                            onMouseLeave={() => swapColor('journalText', Yellow, false)}
+                        />
                     </a>
                 </div>
                 <div id="leftChunk">
