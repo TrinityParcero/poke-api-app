@@ -34,8 +34,7 @@ class App extends React.Component {
                     <a href="https://github.com/TrinityParcero/poke-api-app/blob/main/README.md" target="_blank" id="aboutIcon">
                         <JournalText id="journalText" title="to about page"
                             onMouseOver={() => swapColor('journalText', Blue, false)}
-                            onMouseLeave={() => swapColor('journalText', Yellow, false)}
-                        />
+                            onMouseLeave={() => swapColor('journalText', Yellow, false)} />
                     </a>
                 </div>
                 <div id="leftChunk">
