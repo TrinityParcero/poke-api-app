@@ -209,3 +209,19 @@ export const genButtonClick = async () => {
         displayErrorMessage(error);
     }
 };
+
+/**
+ * switches the color of an element of <elementId> to <color>
+ * 
+ * @param {string} elementId id of element to change color on
+ * @param {string} color color to change element to
+ * @param {boolean} isBackground if true - changes backgroundColor, if false - color
+ */
+export const swapColor = (elementId, color, isBackground) => {
+    const targetElement = document.getElementById(elementId);
+    if (isBackground) {
+        targetElement.style.backgroundColor = color;
+    } else {
+        targetElement.style.color = color;
+    }
+};

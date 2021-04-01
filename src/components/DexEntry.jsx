@@ -2,30 +2,10 @@ import React from 'react';
 import {ArrowRight} from 'react-bootstrap-icons';
 import PropTypes from 'prop-types';
 
-import {pokeSlideClick} from '../logic/clickHandlers';
+import { pokeSlideClick, swapColor } from '../logic/clickHandlers';
 
 const Yellow = "#ffb84b";
 const Blue = "#6bafc9";
-
-/**
- * color active. sets color of div with <id> to yellow
- * 
- * @param {string} id 
- */
-const colorActive = (id) =>{
-    const targetDiv = document.getElementById(id);
-    targetDiv.style.backgroundColor = Yellow;
-};
-
-/**
- * color inactive. sets color of div with <id> to blue
- * 
- * @param {string} id 
- */
-const colorInactive = (id) =>{
-    const targetDiv = document.getElementById(id);
-    targetDiv.style.backgroundColor = Blue;
-};
 
 /**
  * an individual element of an evolution chain with sprite and bg circle
@@ -42,8 +22,8 @@ class ChainElement extends React.Component{
         return(
             <span>
                 <img src={this.pokemon.sprite} alt={`${this.pokemon.name} sprite`}
-                    onMouseOver={() => colorActive(`${this.pokemon.name}evoBg`)} 
-                    onMouseLeave={() => colorInactive(`${this.pokemon.name}evoBg`)}
+                    onMouseOver={() => swapColor(`${this.pokemon.name}evoBg`, Yellow, true)} 
+                    onMouseLeave={() => swapColor(`${this.pokemon.name}evoBg`, Blue, true)}
                     onClick={() => pokeSlideClick(this.pokemon)}
                 /> 
                 <div id={`${this.pokemon.name}evoBg`} className={`backCircle backCircleEvo${this.evolutionLevel}`}></div>
