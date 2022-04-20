@@ -13,6 +13,7 @@ The Pokémon API this integrates with was created by Paul Hallett and other cont
 -   fix react warnings in console, fix accessibility warnings
 -   add special style handling for non-standard evolution chains
 -   add arrows to evolution display
+-   types are not order - non specific
 
 # Known Issues
 
